@@ -17,9 +17,6 @@ namespace CaisseLogicLibrary.DataAccess.User
                _sqlDataAccess = sqlDataAccess;
           }
 
-          public void LogIn()
-          {
-                 
-          }
+          
      }
 }
