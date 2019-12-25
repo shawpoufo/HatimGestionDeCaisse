@@ -29,7 +29,7 @@ namespace CaisseLogicLibrary.DataAccess.Login
                     password = _personne.password
                };
 
-               var output = _sqlDataAccess.LoadData<Personne, dynamic>(query, p, "caisseCnn");
+               var output = _sqlDataAccess.LoadData<int, dynamic>(query, p, "caisseCnn");
 
                return Convert.ToBoolean(output);
           }
