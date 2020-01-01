@@ -4,34 +4,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CaisseSqlLogicLibrary.SqliteDataAccess;
-using CaisseDTOsLibrary.Models.User;
+using Dapper;
+using System.Data;
+using CaisseDTOsLibrary.Models.LoginAccountModel;
 
 namespace CaisseLogicLibrary.DataAccess.Login
 {
-     public class logger
+     public class Logger
      {
-          private ISqlDataAccess _sqlDataAccess;
-          private IPersonne _personne;
+          private ISqliteDataAccess _sqlDataAccess;
+          private ILoginAccount _loginAccount;
 
-          public logger(ISqlDataAccess sqlDataAccess ,IPersonne personne)
+          public Logger(ISqliteDataAccess sqlDataAccess ,ILoginAccount loginAccount)
           {
                _sqlDataAccess = sqlDataAccess;
-               _personne = personne;
+               _loginAccount = loginAccount;
           }
 
-          public bool Login()
+          public int Login()
           {
-               string query = "select count(id) from Login where username = @username and password = @password ";
+               string query = "select count(id) from LoginAccount where username = @username and password = @password ";
 
-               var p = new
-               {
-                    username = _personne.username,
-                    password = _personne.password
-               };
+               var output = _sqlDataAccess.LoadData<LoginAccount,dynamic>(query, _loginAccount, "caisseCnn").FirstOrDefault();
 
-               var output = _sqlDataAccess.LoadData<int, dynamic>(query, p, "caisseCnn");
-
-               return Convert.ToBoolean(output);
+               if (output != null)
+                    return output.id;
+               else
+                    return 0;
           }
+
      }
 }

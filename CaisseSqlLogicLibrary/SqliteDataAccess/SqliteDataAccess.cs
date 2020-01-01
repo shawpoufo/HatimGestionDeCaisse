@@ -10,14 +10,15 @@ using Dapper;
 
 namespace CaisseSqlLogicLibrary.SqliteDataAccess
 {
-     public class SqlDataAccess : ISqlDataAccess
+     public class SqliteDataAccess : ISqliteDataAccess
      {
           public string GetConnectionString(string name)
           {
-               return ConfigurationManager.ConnectionStrings[name].ConnectionString;
+               //return ConfigurationManager.ConnectionStrings[name].ConnectionString;
+               return @"Data Source=C:\Users\AND\Desktop\Projet Caisse WinForm\HatimGestionDeCaisse\CaisseWinformUI\bin\Debug\caisse.db;Version=3; providerName=System.Data.SqlClient";
           }
-
-          public List<T> LoadData<T, U>(string sqlQuery, U parameters, string connectionStringName)
+          //Get
+          public List<T> LoadData<T,U>(string sqlQuery, U parameters, string connectionStringName)
           {
                string connectionString = GetConnectionString(connectionStringName);
 
@@ -27,7 +28,7 @@ namespace CaisseSqlLogicLibrary.SqliteDataAccess
                     return rows;
                }
           }
-
+          //Update , Delete , Insert
           public void SaveData<T>(string sqlQuery, T parameters, string connectionStringName)
           {
                string connectionString = GetConnectionString(connectionStringName);

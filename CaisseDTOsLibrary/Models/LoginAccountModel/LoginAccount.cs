@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CaisseDTOsLibrary.Models.User
+namespace CaisseDTOsLibrary.Models.LoginAccountModel
 {
-     public class Personne : IPersonne
+     public class LoginAccount:ILoginAccount
      {
           public int id { get; set; }
           public string username { get; set; }
           public string password { get; set; }
-      
      }
 }

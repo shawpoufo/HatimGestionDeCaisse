@@ -51,8 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SqliteDataAccess\ISqlDataAccess.cs" />
-    <Compile Include="SqliteDataAccess\SqlDataAccess.cs" />
+    <Compile Include="SqliteDataAccess\ISqliteDataAccess.cs" />
+    <Compile Include="SqliteDataAccess\SqliteDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

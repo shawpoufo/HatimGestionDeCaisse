@@ -15,6 +15,9 @@ namespace CaisseWinformUI
           public Form1()
           {
                InitializeComponent();
+               
           }
+
+
      }
 }

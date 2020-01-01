@@ -1,7 +1,7 @@
 ﻿using System;
-namespace CaisseDTOsLibrary.Models.User
+namespace CaisseDTOsLibrary.Models.LoginAccountModel
 {
-     public interface IPersonne
+     public interface ILoginAccount
      {
           int id { get; set; }
           string password { get; set; }

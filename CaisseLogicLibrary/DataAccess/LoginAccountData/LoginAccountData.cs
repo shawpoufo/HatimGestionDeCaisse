@@ -1,4 +1,4 @@
-﻿using CaisseDTOsLibrary.Models.User;
+﻿using CaisseDTOsLibrary.Models.LoginAccountModel;
 using CaisseSqlLogicLibrary.SqliteDataAccess;
 using System;
 using System.Collections.Generic;
@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CaisseLogicLibrary.DataAccess.User
+namespace CaisseLogicLibrary.DataAccess.LoginAccountData
 {
-     public class UserData
+     public class LoginAccountData
      {
-          private ISqlDataAccess _sqlDataAccess;
+          private ISqliteDataAccess _sqlDataAccess;
 
-          public UserData(ISqlDataAccess sqlDataAccess)
+          public LoginAccountData(ISqliteDataAccess sqlDataAccess)
           {
                _sqlDataAccess = sqlDataAccess;
           }
