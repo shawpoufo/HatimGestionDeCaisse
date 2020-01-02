@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CaisseLogicLibrary.DataAccess.LoginAccountData
+namespace CaisseLogicLibrary.DataAccess.SignUp
 {
      public class LoginAccountData
      {

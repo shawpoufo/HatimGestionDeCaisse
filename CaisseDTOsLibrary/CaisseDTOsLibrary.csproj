@@ -40,8 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\BeneficiaireModel\Beneficiaire.cs" />
+    <Compile Include="Models\BeneficiaireModel\IBeneficiaire.cs" />
+    <Compile Include="Models\BilanMensuelModel\BilanMensuel.cs" />
+    <Compile Include="Models\BilanMensuelModel\IBilanMensuel.cs" />
+    <Compile Include="Models\CompteModel\Compte.cs" />
+    <Compile Include="Models\CompteModel\ICompte.cs" />
+    <Compile Include="Models\ImputationModel\IImputation.cs" />
+    <Compile Include="Models\ImputationModel\Imputation.cs" />
     <Compile Include="Models\LoginAccountModel\ILoginAccount.cs" />
     <Compile Include="Models\LoginAccountModel\LoginAccount.cs" />
+    <Compile Include="Models\OperationModel\IOperation.cs" />
+    <Compile Include="Models\OperationModel\Operation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

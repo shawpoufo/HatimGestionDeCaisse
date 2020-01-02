@@ -18,7 +18,7 @@ namespace CaisseSqlLogicLibrary.SqliteDataAccess
                return @"Data Source=C:\Users\AND\Desktop\Projet Caisse WinForm\HatimGestionDeCaisse\CaisseWinformUI\bin\Debug\caisse.db;Version=3; providerName=System.Data.SqlClient";
           }
           //Get
-          public List<T> LoadData<T,U>(string sqlQuery, U parameters, string connectionStringName)
+          public List<T> LoadData<T,U>(string sqlQuery, U parameters, string connectionStringName = "caisseCnn")
           {
                string connectionString = GetConnectionString(connectionStringName);
 
@@ -29,7 +29,7 @@ namespace CaisseSqlLogicLibrary.SqliteDataAccess
                }
           }
           //Update , Delete , Insert
-          public void SaveData<T>(string sqlQuery, T parameters, string connectionStringName)
+          public void SaveData<T>(string sqlQuery, T parameters, string connectionStringName = "caisseCnn")
           {
                string connectionString = GetConnectionString(connectionStringName);
 

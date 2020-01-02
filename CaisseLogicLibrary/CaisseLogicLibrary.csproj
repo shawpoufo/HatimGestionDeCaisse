@@ -44,8 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\BeneficiaireData\BeneficiaireDataAccess.cs" />
+    <Compile Include="DataAccess\BeneficiaireData\IBeneficiaireDataAccess.cs" />
+    <Compile Include="DataAccess\ImutationDataAccess\IImutationData.cs" />
+    <Compile Include="DataAccess\ImutationDataAccess\ImutationData.cs" />
     <Compile Include="DataAccess\Login\Logger.cs" />
-    <Compile Include="DataAccess\LoginAccountData\LoginAccountData.cs" />
+    <Compile Include="DataAccess\SignUp\LoginAccountData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +65,7 @@
       <Name>CaisseSqlLogicLibrary</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
