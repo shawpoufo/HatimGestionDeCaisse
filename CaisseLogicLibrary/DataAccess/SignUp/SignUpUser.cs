@@ -8,13 +8,18 @@ using System.Threading.Tasks;
 
 namespace CaisseLogicLibrary.DataAccess.SignUp
 {
-     public class LoginAccountData
+     public class SignUpUser
      {
           private ISqliteDataAccess _sqlDataAccess;
 
-          public LoginAccountData(ISqliteDataAccess sqlDataAccess)
+          public SignUpUser(ISqliteDataAccess sqlDataAccess)
           {
                _sqlDataAccess = sqlDataAccess;
+          }
+
+          public bool SignUp(LoginAccount user)
+          {
+              return _sqlDataAccess.SignUpTransaction<LoginAccount>(user);
           }
 
           

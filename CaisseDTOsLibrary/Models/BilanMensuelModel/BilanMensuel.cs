@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CaisseDTOsLibrary.Models.BilanMensuelModel
 {
-     public class BilanMensuel : CaisseDTOsLibrary.Models.BilanMensuelModel.IBilanMensuel
+     public class BilanMensuel : IBilanMensuel
      {
           public int id { get; set; }
           public DateTime date { get; set; }

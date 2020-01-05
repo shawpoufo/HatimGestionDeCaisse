@@ -46,10 +46,10 @@
   <ItemGroup>
     <Compile Include="DataAccess\BeneficiaireData\BeneficiaireDataAccess.cs" />
     <Compile Include="DataAccess\BeneficiaireData\IBeneficiaireDataAccess.cs" />
-    <Compile Include="DataAccess\ImutationDataAccess\IImutationData.cs" />
-    <Compile Include="DataAccess\ImutationDataAccess\ImutationData.cs" />
+    <Compile Include="DataAccess\ImputationDataAccess\IImputationData.cs" />
+    <Compile Include="DataAccess\ImputationDataAccess\ImputationData.cs" />
     <Compile Include="DataAccess\Login\Logger.cs" />
-    <Compile Include="DataAccess\SignUp\LoginAccountData.cs" />
+    <Compile Include="DataAccess\SignUp\SignUpUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -23,14 +23,9 @@ namespace Caisse.Tests.LogicLibraryTests
                using (var mock = AutoMock.GetLoose())
                {
                     //Arrange
-                    string query = "select count(id) from LoginAccount where username = @username and password = @password ";
-
-                    mock.Mock<ILoginAccount>()
-                         .SetupProperty(pers => pers.username)
-                         .SetupProperty(pers => pers.password);
-
+                    string query = "select id from LoginAccount where username = @username and password = @password ";
                     mock.Mock<ISqliteDataAccess>()
-                         .Setup(x => x.LoadData<LoginAccount, dynamic>(query, It.IsAny<ILoginAccount>(), "caisseCnn"))
+                         .Setup(x => x.LoadData<LoginAccount, dynamic>(query, It.IsAny<LoginAccount>(), "caisseCnn"))
                          .Returns(
                          new List<LoginAccount>() 
                          { 
@@ -40,7 +35,7 @@ namespace Caisse.Tests.LogicLibraryTests
                     //Act
                     var cls = mock.Create<Logger>();
                     var expected = 9;
-                    var actual = cls.Login();
+                    var actual = cls.Login(It.IsAny<LoginAccount>());
 
                     //Assert
 
@@ -57,14 +52,10 @@ namespace Caisse.Tests.LogicLibraryTests
                using (var mock = AutoMock.GetLoose())
                {
                     //Arrange
-                    string query = "select count(id) from LoginAccount where username = @username and password = @password ";
-
-                    mock.Mock<ILoginAccount>()
-                         .SetupProperty(pers => pers.username)
-                         .SetupProperty(pers => pers.password);
+                    string query = "select id from LoginAccount where username = @username and password = @password ";
 
                     mock.Mock<ISqliteDataAccess>()
-                         .Setup(x => x.LoadData<LoginAccount, dynamic>(query, It.IsAny<ILoginAccount>(), "caisseCnn"))
+                         .Setup(x => x.LoadData<LoginAccount, dynamic>(query, It.IsAny<LoginAccount>(), "caisseCnn"))
                          .Returns(
                          new List<LoginAccount>() 
                          { 
@@ -74,7 +65,7 @@ namespace Caisse.Tests.LogicLibraryTests
                     //Act
                     var cls = mock.Create<Logger>();
                     var expected = 0;
-                    var actual = cls.Login();
+                    var actual = cls.Login(It.IsAny<LoginAccount>());
 
                     //Assert
                     Assert.Equal(expected, actual);

@@ -13,19 +13,19 @@ namespace CaisseLogicLibrary.DataAccess.Login
      public class Logger
      {
           private ISqliteDataAccess _sqlDataAccess;
-          private ILoginAccount _loginAccount;
 
-          public Logger(ISqliteDataAccess sqlDataAccess ,ILoginAccount loginAccount)
+
+          public Logger(ISqliteDataAccess sqlDataAccess )
           {
                _sqlDataAccess = sqlDataAccess;
-               _loginAccount = loginAccount;
+
           }
 
-          public int Login()
+          public int Login(LoginAccount user)
           {
-               string query = "select count(id) from LoginAccount where username = @username and password = @password ";
+               string query = "select id from LoginAccount where username = @username and password = @password ";
 
-               var output = _sqlDataAccess.LoadData<LoginAccount,dynamic>(query, _loginAccount, "caisseCnn").FirstOrDefault();
+               var output = _sqlDataAccess.LoadData<LoginAccount, dynamic>(query, user, "caisseCnn").FirstOrDefault();
 
                if (output != null)
                     return output.id;

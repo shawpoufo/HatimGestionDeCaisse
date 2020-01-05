@@ -4,25 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CaisseSqlLogicLibrary.SqliteDataAccess;
-using CaisseDTOsLibrary.Models.ImutationModel;
 
-namespace CaisseLogicLibrary.DataAccess.ImutationDataAccess
+using CaisseDTOsLibrary.Models.ImputationModel;
+
+namespace CaisseLogicLibrary.DataAccess.ImputationDataAccess
 {
-     public class ImutationData : IImutationData
+     public class ImputationData : IImputationData
      {
           private ISqliteDataAccess _sqliteDataAccess;
           private string query { get; set; }
-          public ImutationData(ISqliteDataAccess sqliteDataAccess)
+          public ImputationData(ISqliteDataAccess sqliteDataAccess)
           {
                _sqliteDataAccess = sqliteDataAccess;
                
           }
 
-          public void Insert(Imutation imutation)
+          public void Insert(Imputation imputation)
           {
 
                query = "insert into Imutation (id,libelle) values (@id,@libelle)";
-               _sqliteDataAccess.SaveData<Imutation>(query, imutation);
+               _sqliteDataAccess.SaveData<Imputation>(query, imputation);
           }
 
           public void Update(int id)
@@ -37,17 +38,17 @@ namespace CaisseLogicLibrary.DataAccess.ImutationDataAccess
                _sqliteDataAccess.SaveData<dynamic>(query, new { id = id });
           }
 
-          public Imutation Get(int id)
+          public Imputation Get(int id)
           {
                query = "select * from Imutation where id = @id";
-               var imutation = _sqliteDataAccess.LoadData<Imutation,dynamic>(query, new { id = id }).FirstOrDefault();
+               var imutation = _sqliteDataAccess.LoadData<Imputation, dynamic>(query, new { id = id }).FirstOrDefault();
                return imutation;
           }
 
-          public List<Imutation> GetAll()
+          public List<Imputation> GetAll()
           {
                query = "select * from Imutation ";
-               var imutation = _sqliteDataAccess.LoadData<Imutation, dynamic>(query, new { });
+               var imutation = _sqliteDataAccess.LoadData<Imputation, dynamic>(query, new { });
                return imutation;
           }
      }
