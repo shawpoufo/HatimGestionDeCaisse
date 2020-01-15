@@ -1,12 +1,14 @@
-﻿using System;
+﻿using CaisseDTOsLibrary.Models.ImputationModel;
+using System;
+using System.Collections.Generic;
 namespace CaisseLogicLibrary.DataAccess.ImputationDataAccess
 {
      public interface IImputationData
      {
           void Delete(int id);
-          CaisseDTOsLibrary.Models.ImputationModel.Imputation Get(int id);
-          System.Collections.Generic.List<CaisseDTOsLibrary.Models.ImputationModel.Imputation> GetAll();
-          void Insert(CaisseDTOsLibrary.Models.ImputationModel.Imputation imutation);
-          void Update(int id);
+          Imputation Get(int id);
+          List<CaisseDTOsLibrary.Models.ImputationModel.Imputation> GetAll();
+          void Insert(Imputation imutation);
+          void Update(Imputation imputation);
      }
 }

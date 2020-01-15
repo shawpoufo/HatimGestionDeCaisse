@@ -8,16 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CaisseWinformUI
+namespace CaisseWinformUI.Views
 {
-     public partial class Form1 : Form
-     {
-          public Form1()
-          {
-               InitializeComponent();
-               
-          }
-
-
-     }
+    public partial class MainView : Form
+    {
+        public MainView()
+        {
+            InitializeComponent();
+        }
+    }
 }

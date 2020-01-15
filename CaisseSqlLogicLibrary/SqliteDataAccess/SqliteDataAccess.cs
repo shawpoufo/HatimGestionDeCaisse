@@ -55,13 +55,13 @@ namespace CaisseSqlLogicLibrary.SqliteDataAccess
                     try
                     {
                         query = "insert into LoginAccount (username,password) values (@username,@password)";
-                        connection.Execute(query, parameters);
+                        connection.Execute(query, parameters, transaction: transaction);
 
                         query = "select top 1 id from LoginAccount order by id desc ";
-                        int id = connection.Query<int>(query).ToList().FirstOrDefault();
+                        int id = connection.Query<int>(query, transaction: transaction).ToList().FirstOrDefault();
 
                         query = "insert into Compte (montant,caissier) values (@montant,@caissier)";
-                        connection.Execute(query, new { montant = 0, caissier = id });
+                        connection.Execute(query, new { montant = 0, caissier = id }, transaction: transaction);
 
                         transaction.Commit();
                     }

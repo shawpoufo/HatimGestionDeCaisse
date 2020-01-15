@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CaisseLogicLibrary.DataAccess.SignUp
 {
-     public class SignUpUser
+     public class SignUpUser : CaisseLogicLibrary.DataAccess.SignUp.ISignUpUser
      {
           private ISqliteDataAccess _sqlDataAccess;
 

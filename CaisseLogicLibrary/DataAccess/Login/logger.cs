@@ -10,7 +10,7 @@ using CaisseDTOsLibrary.Models.LoginAccountModel;
 
 namespace CaisseLogicLibrary.DataAccess.Login
 {
-     public class Logger
+     public class Logger : CaisseLogicLibrary.DataAccess.Login.ILogger
      {
           private ISqliteDataAccess _sqlDataAccess;
 
@@ -21,10 +21,9 @@ namespace CaisseLogicLibrary.DataAccess.Login
 
           }
 
-          public int Login(LoginAccount user)
+          public int Login(ILoginAccount user)
           {
                string query = "select id from LoginAccount where username = @username and password = @password ";
-
                var output = _sqlDataAccess.LoadData<LoginAccount, dynamic>(query, user, "caisseCnn").FirstOrDefault();
 
                if (output != null)

@@ -44,11 +44,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccess\BeneficiaireData\BeneficiaireDataAccess.cs" />
-    <Compile Include="DataAccess\BeneficiaireData\IBeneficiaireDataAccess.cs" />
+    <Compile Include="DataAccess\BeneficiaireDataAccess\BeneficiaireData.cs" />
+    <Compile Include="DataAccess\BeneficiaireDataAccess\IBeneficiaireData.cs" />
     <Compile Include="DataAccess\ImputationDataAccess\IImputationData.cs" />
     <Compile Include="DataAccess\ImputationDataAccess\ImputationData.cs" />
+    <Compile Include="DataAccess\Login\ILogger.cs" />
     <Compile Include="DataAccess\Login\Logger.cs" />
+    <Compile Include="DataAccess\OperationDataAccess\IOperationData.cs" />
+    <Compile Include="DataAccess\OperationDataAccess\OperationData.cs" />
+    <Compile Include="DataAccess\SearchOperations\ISearchOperation.cs" />
+    <Compile Include="DataAccess\SearchOperations\SearchOperation.cs" />
+    <Compile Include="DataAccess\SignUp\ISignUpUser.cs" />
     <Compile Include="DataAccess\SignUp\SignUpUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

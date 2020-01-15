@@ -50,6 +50,8 @@
     <Compile Include="Models\ImputationModel\Imputation.cs" />
     <Compile Include="Models\LoginAccountModel\ILoginAccount.cs" />
     <Compile Include="Models\LoginAccountModel\LoginAccount.cs" />
+    <Compile Include="Models\FullOperationModel\IOperation.cs" />
+    <Compile Include="Models\FullOperationModel\FullOperation.cs" />
     <Compile Include="Models\OperationModel\IOperation.cs" />
     <Compile Include="Models\OperationModel\Operation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
