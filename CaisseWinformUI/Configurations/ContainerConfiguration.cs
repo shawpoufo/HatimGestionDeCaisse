@@ -39,11 +39,13 @@ namespace CaisseWinformUI.Configurations
             //Views
             builder.RegisterType<LoginView>().As<ILoginView>();
             builder.RegisterType<LoginUC>().As<ILoginUC>();
+            builder.RegisterType<SignUpUC>().As<ISignUpUC>();
             //Models
             builder.RegisterType<LoginAccountModel>().As<ILoginAccountModel>();
             //Presenters
             builder.RegisterType<LoginViewPresenter>().As<ILoginViewPresenter>();
             builder.RegisterType<LoginUCPresenter>().As<ILoginUCPresenter>();
+            builder.RegisterType<SignUpUCPresenter>().As<ISignUpUCPresenter>();
 
 
 

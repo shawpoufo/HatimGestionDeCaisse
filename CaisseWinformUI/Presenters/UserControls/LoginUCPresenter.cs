@@ -79,6 +79,7 @@ namespace CaisseWinformUI.Presenters.UserControls
         {
             return (LoginUC)_loginUC;
         }
+
         private LoginAccountModel InitializeLoginAccountModel()
         {
             return new LoginAccountModel()
