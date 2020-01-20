@@ -14,8 +14,8 @@ namespace CaisseSqlLogicLibrary.SqliteDataAccess
     {
         public string GetConnectionString(string name)
         {
-            //return ConfigurationManager.ConnectionStrings[name].ConnectionString;
-            return @"Data Source=C:\Users\AND\Desktop\Projet Caisse WinForm\HatimGestionDeCaisse\CaisseWinformUI\bin\Debug\caisse.db;Version=3; providerName=System.Data.SqlClient";
+            return ConfigurationManager.ConnectionStrings[name].ConnectionString;
+            //return @"Data Source=C:\Users\AND\Desktop\Projet Caisse WinForm\HatimGestionDeCaisse\CaisseWinformUI\bin\Debug\caisse.db;Version=3; providerName=System.Data.SqlClient";
         }
         //Get
         public List<T> LoadData<T, U>(string sqlQuery, U parameters, string connectionStringName = "caisseCnn")
@@ -44,7 +44,7 @@ namespace CaisseSqlLogicLibrary.SqliteDataAccess
         {
             string connectionString = GetConnectionString(connectionStringName);
             string query = "";
-            bool isCreated = false;
+            bool isCreated = true;
 
             using (IDbConnection connection = new SQLiteConnection(connectionString))
             {
@@ -54,10 +54,10 @@ namespace CaisseSqlLogicLibrary.SqliteDataAccess
                 {
                     try
                     {
-                        query = "insert into LoginAccount (username,password) values (@username,@password)";
+                        query = "insert into LoginAccount (username,password,email) values (@username,@password,@email)";
                         connection.Execute(query, parameters, transaction: transaction);
 
-                        query = "select top 1 id from LoginAccount order by id desc ";
+                        query = "select id from LoginAccount order by id desc limit 1";
                         int id = connection.Query<int>(query, transaction: transaction).ToList().FirstOrDefault();
 
                         query = "insert into Compte (montant,caissier) values (@montant,@caissier)";
@@ -67,12 +67,13 @@ namespace CaisseSqlLogicLibrary.SqliteDataAccess
                     }
                     catch (Exception ex)
                     {
+                        isCreated = false;
                         transaction.Rollback();
                     }
                 }
             }
 
-            isCreated = true;
+            
 
             return isCreated;
         }

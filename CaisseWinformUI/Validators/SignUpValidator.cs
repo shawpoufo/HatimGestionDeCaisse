@@ -8,17 +8,18 @@ using CaisseWinformUI.Models;
 
 namespace CaisseWinformUI.Validators
 {
-    public class LoginAccountValidator : AbstractValidator<LoginAccountModel>
+    public class SignUpValidator : AbstractValidator<LoginAccountModel>
     {
-        public LoginAccountValidator()
+        public SignUpValidator()
         {
-            RuleFor(l => l.username)
+            RuleFor(s => s.username)
                 .NotEmpty();
 
-            RuleFor(l => l.password)
-                .NotEmpty();
+            RuleFor(s => s.password)
+                .NotEmpty(); 
 
-          
+            RuleFor(s => s.email)
+                .NotEmpty();
         }
     }
 }

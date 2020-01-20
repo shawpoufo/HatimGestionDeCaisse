@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using CaisseDTOsLibrary.Models.LoginAccountModel;
-using CaisseLogicLibrary.DataAccess.Login;
+using CaisseLogicLibrary.DataAccess.SignUp;
 using CaisseWinformUI.Models;
 using CaisseWinformUI.Validators;
 using CaisseWinformUI.Views.UserControls;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,20 +17,20 @@ namespace CaisseWinformUI.Presenters.UserControls
     public class SignUpUCPresenter : ISignUpUCPresenter
     {
         private ISignUpUC _signUpUC;
-        private ILogger _logger;
+        private ISignUpUser _signUpUser;
         private ILoginAccount _loginAccount;
         private IMapper _mapper;
-        private LoginAccountValidator validator;
+        private SignUpValidator validator;
 
         public event EventHandler ShowLoginUCView;
 
-        public SignUpUCPresenter(ISignUpUC signUpUC, ILogger logger, ILoginAccount loginAccount, IMapper mapper)
+        public SignUpUCPresenter(ISignUpUC signUpUC, ISignUpUser signUpUser, ILoginAccount loginAccount, IMapper mapper)
         {
             _signUpUC = signUpUC;
-            _logger = logger;
+            _signUpUser = signUpUser;
             _loginAccount = loginAccount;
             _mapper = mapper;
-            validator = new LoginAccountValidator();
+            validator = new SignUpValidator();
             InitializeSignUpUCEvents();
         }
         private void InitializeSignUpUCEvents()
@@ -46,6 +48,31 @@ namespace CaisseWinformUI.Presenters.UserControls
         void _signUpUC_SignUp(object sender, EventArgs e)
         {
             LoginAccountModel account = InitializeLoginAccountModel();
+            ValidationResult results = validator.Validate(account);
+
+            if(results.IsValid)
+            {
+                _loginAccount = _mapper.Map<LoginAccount>(account);
+
+                bool check = _signUpUser.SignUp(_loginAccount);
+
+                if (check)
+                {
+                    _signUpUC.SetErrorMessage = "Vous etes inscrit avec succèes veuiller vous diriger vers la page de connexion";
+                    _signUpUC.SetColorErrorMessage = Color.LightGreen;
+                }
+                else
+                {
+                    _signUpUC.SetErrorMessage = "Une erreur vient de se produire veuiller repeter sinon contacter votre administrateur ";
+                    _signUpUC.SetColorErrorMessage = Color.Red;
+                }
+            }
+            else
+            {
+                List<ValidationFailure> failures = results.Errors.ToList();
+                if (failures.Count > 0)
+                    _signUpUC.SetErrorMessage = failures.FirstOrDefault().ErrorMessage;
+            }
         }
 
         public SignUpUC GetUserControl()
@@ -58,7 +85,8 @@ namespace CaisseWinformUI.Presenters.UserControls
             return new LoginAccountModel()
             {
                 username = _signUpUC.GetUsername,
-                password = _signUpUC.GetPassword
+                password = _signUpUC.GetPassword,
+                email = _signUpUC.GetEmail
             };
         }
 

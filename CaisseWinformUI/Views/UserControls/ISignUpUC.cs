@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 namespace CaisseWinformUI.Views.UserControls
 {
     public interface ISignUpUC:IBaseUC
@@ -8,6 +9,7 @@ namespace CaisseWinformUI.Views.UserControls
         string GetUsername { get; }
         event EventHandler Login;
         string SetErrorMessage { set; }
+        Color SetColorErrorMessage { set;}
         event EventHandler SignUp;
     }
 }

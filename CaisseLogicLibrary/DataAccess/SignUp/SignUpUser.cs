@@ -17,9 +17,9 @@ namespace CaisseLogicLibrary.DataAccess.SignUp
                _sqlDataAccess = sqlDataAccess;
           }
 
-          public bool SignUp(LoginAccount user)
+          public bool SignUp(ILoginAccount user)
           {
-              return _sqlDataAccess.SignUpTransaction<LoginAccount>(user);
+              return _sqlDataAccess.SignUpTransaction<LoginAccount>((LoginAccount)user);
           }
 
           

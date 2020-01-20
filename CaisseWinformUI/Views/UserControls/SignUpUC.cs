@@ -18,6 +18,7 @@ namespace CaisseWinformUI.Views.UserControls
         public string GetPassword { get { return txtPassword.Text; } }
         public string GetEmail{ get { return txtEmail.Text; } }
         public string SetErrorMessage { set { lblErrorMessage.Text = value; } }
+        public Color SetColorErrorMessage { set { lblErrorMessage.ForeColor = value; } }
 
         public SignUpUC()
         {

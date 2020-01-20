@@ -6,5 +6,6 @@ namespace CaisseDTOsLibrary.Models.LoginAccountModel
           int id { get; set; }
           string password { get; set; }
           string username { get; set; }
+          string email { get; set; }
      }
 }

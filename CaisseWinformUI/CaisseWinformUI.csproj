@@ -82,7 +82,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validators\LoginAccountValidator.cs" />
-    <Compile Include="Validators\SignUpValidation.cs" />
+    <Compile Include="Validators\SignUpValidator.cs" />
     <Compile Include="Views\ILoginView.cs" />
     <Compile Include="Views\LoginView.cs">
       <SubType>Form</SubType>
