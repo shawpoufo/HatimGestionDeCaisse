@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="DataAccess\BeneficiaireDataAccess\BeneficiaireData.cs" />
     <Compile Include="DataAccess\BeneficiaireDataAccess\IBeneficiaireData.cs" />
+    <Compile Include="DataAccess\FilterOperationDataAccess\FilterOperationData.cs" />
+    <Compile Include="DataAccess\FilterOperationDataAccess\IFilterOperationData.cs" />
     <Compile Include="DataAccess\ImputationDataAccess\IImputationData.cs" />
     <Compile Include="DataAccess\ImputationDataAccess\ImputationData.cs" />
     <Compile Include="DataAccess\Login\ILogger.cs" />

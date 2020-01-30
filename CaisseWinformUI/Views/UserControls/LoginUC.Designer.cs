@@ -50,7 +50,7 @@
             this.label1.Location = new System.Drawing.Point(111, 55);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(221, 37);
-            this.label1.TabIndex = 0;
+            this.label1.TabIndex = 5;
             this.label1.Text = "Gestion de caisse";
             // 
             // label2
@@ -60,7 +60,7 @@
             this.label2.Location = new System.Drawing.Point(16, 213);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 25);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 6;
             this.label2.Text = "Username";
             // 
             // label3
@@ -70,20 +70,21 @@
             this.label3.Location = new System.Drawing.Point(16, 299);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 25);
-            this.label3.TabIndex = 2;
+            this.label3.TabIndex = 7;
             this.label3.Text = "Password";
             // 
             // btnLogin
             // 
             this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(117)))), ((int)(((byte)(0)))));
+            this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogin.FlatAppearance.BorderSize = 0;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(117, 396);
+            this.btnLogin.Location = new System.Drawing.Point(117, 424);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(211, 36);
-            this.btnLogin.TabIndex = 4;
+            this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Se connecter";
             this.btnLogin.UseVisualStyleBackColor = false;
             // 
@@ -94,7 +95,7 @@
             this.txtUsername.Location = new System.Drawing.Point(135, 208);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(223, 26);
-            this.txtUsername.TabIndex = 5;
+            this.txtUsername.TabIndex = 1;
             // 
             // panel1
             // 
@@ -103,7 +104,7 @@
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(223, 1);
-            this.panel1.TabIndex = 6;
+            this.panel1.TabIndex = 0;
             // 
             // panel2
             // 
@@ -112,7 +113,7 @@
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(223, 1);
-            this.panel2.TabIndex = 8;
+            this.panel2.TabIndex = 0;
             // 
             // txtPassword
             // 
@@ -120,8 +121,9 @@
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPassword.Location = new System.Drawing.Point(135, 294);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '●';
             this.txtPassword.Size = new System.Drawing.Size(223, 26);
-            this.txtPassword.TabIndex = 7;
+            this.txtPassword.TabIndex = 2;
             // 
             // panel3
             // 
@@ -131,31 +133,32 @@
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(437, 139);
-            this.panel3.TabIndex = 10;
+            this.panel3.TabIndex = 0;
             // 
             // btnInscription
             // 
             this.btnInscription.BackColor = System.Drawing.Color.White;
+            this.btnInscription.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnInscription.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInscription.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInscription.ForeColor = System.Drawing.Color.Gray;
-            this.btnInscription.Location = new System.Drawing.Point(117, 445);
+            this.btnInscription.Location = new System.Drawing.Point(117, 473);
             this.btnInscription.Name = "btnInscription";
             this.btnInscription.Size = new System.Drawing.Size(211, 36);
-            this.btnInscription.TabIndex = 11;
+            this.btnInscription.TabIndex = 4;
             this.btnInscription.Text = "S\'inscrire";
             this.btnInscription.UseVisualStyleBackColor = false;
             // 
             // lblErrorMessage
             // 
-            this.lblErrorMessage.AutoSize = true;
             this.lblErrorMessage.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lblErrorMessage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorMessage.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorMessage.Location = new System.Drawing.Point(88, 354);
+            this.lblErrorMessage.Location = new System.Drawing.Point(17, 364);
             this.lblErrorMessage.Name = "lblErrorMessage";
-            this.lblErrorMessage.Size = new System.Drawing.Size(0, 21);
-            this.lblErrorMessage.TabIndex = 12;
+            this.lblErrorMessage.Size = new System.Drawing.Size(405, 57);
+            this.lblErrorMessage.TabIndex = 0;
+            this.lblErrorMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LoginUC
             // 
@@ -175,7 +178,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "LoginUC";
-            this.Size = new System.Drawing.Size(437, 514);
+            this.Size = new System.Drawing.Size(437, 525);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);

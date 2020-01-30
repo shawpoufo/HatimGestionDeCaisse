@@ -5,5 +5,6 @@ namespace CaisseDTOsLibrary.Models.ImputationModel
      {
           int id { get; set; }
           string libelle { get; set; }
+          int compte { get; set; }
      }
 }

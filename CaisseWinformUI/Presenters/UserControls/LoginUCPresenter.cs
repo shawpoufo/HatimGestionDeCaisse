@@ -55,10 +55,11 @@ namespace CaisseWinformUI.Presenters.UserControls
             {
                 _loginAccount = _mapper.Map<LoginAccount>(account);
 
-                int check = _logger.Login(_loginAccount);
+                int id = _logger.Login(_loginAccount);
 
-                if(check != 0)
+                if(id != 0)
                 {
+                    _loginAccount.id = id;
                     if (ShowMainView != null)
                         ShowMainView(_loginAccount,EventArgs.Empty);
                 }

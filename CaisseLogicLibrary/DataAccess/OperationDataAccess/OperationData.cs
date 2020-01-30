@@ -29,9 +29,9 @@ namespace CaisseLogicLibrary.DataAccess.OperationDataAccess
         public void Update(Operation operation)
         {
             query = "update Operation set "+
-                    "date = @date , imputation = @imputation "+
-                    "incrementer = @incrementer , decrementer = @decrementer " +
-                    "beneficiaire = @beneficiaire , libelle = @libelle " +
+                    "date = @date , imputation = @imputation, "+
+                    "incrementer = @incrementer , decrementer = @decrementer, " +
+                    "beneficiaire = @beneficiaire , libelle = @libelle, " +
                     "compte = @compte " +
                     "where id = @id";
 
@@ -42,6 +42,11 @@ namespace CaisseLogicLibrary.DataAccess.OperationDataAccess
         {
             query = "delete from Operation where id = @id";
             _sqliteDataAccess.SaveData<dynamic>(query, new { id = id });
+        }
+        public IOperation Get(int id)
+        {
+            query = "select * from Operation where id = @id";
+            return _sqliteDataAccess.LoadData<Operation,dynamic>(query, new { id = id }).FirstOrDefault();
         }
 
     }

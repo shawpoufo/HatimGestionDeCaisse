@@ -10,11 +10,42 @@ using System.Windows.Forms;
 
 namespace CaisseWinformUI.Views
 {
-    public partial class MainView : Form
+    public partial class MainView : Form,IMainView
     {
+
+        public Panel GetHeaderPanel { get { return HeaderPanel; } }
+        public Panel GetBodyPanel { get { return BodyPanel; } }
+
         public MainView()
         {
             InitializeComponent();
+            this.Load += MainView_Load;
+        }
+
+        void MainView_Load(object sender, EventArgs e)
+        {
+            InitializeViewProperties();
+            
+        }
+
+        void MainView_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void InitializeEvents()
+        {
+
+        }
+
+        private void InitializeViewProperties()
+        {
+            this.Size = new Size(1200, 850);
+            this.FormClosed += MainView_FormClosed;
+            this.CenterToScreen();
+
+            HeaderPanel.Height = 100;
+
         }
     }
 }

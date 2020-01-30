@@ -58,14 +58,14 @@
             // 
             // lblErrorMessage
             // 
-            this.lblErrorMessage.AutoSize = true;
             this.lblErrorMessage.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lblErrorMessage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorMessage.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorMessage.Location = new System.Drawing.Point(113, 369);
+            this.lblErrorMessage.Location = new System.Drawing.Point(17, 364);
             this.lblErrorMessage.Name = "lblErrorMessage";
-            this.lblErrorMessage.Size = new System.Drawing.Size(0, 21);
+            this.lblErrorMessage.Size = new System.Drawing.Size(405, 57);
             this.lblErrorMessage.TabIndex = 22;
+            this.lblErrorMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnLogin
             // 
@@ -74,10 +74,10 @@
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.Gray;
-            this.btnLogin.Location = new System.Drawing.Point(117, 445);
+            this.btnLogin.Location = new System.Drawing.Point(117, 473);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(211, 36);
-            this.btnLogin.TabIndex = 21;
+            this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "Connexion";
             this.btnLogin.UseVisualStyleBackColor = false;
             // 
@@ -108,7 +108,7 @@
             this.txtPassword.Location = new System.Drawing.Point(126, 248);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(223, 26);
-            this.txtPassword.TabIndex = 18;
+            this.txtPassword.TabIndex = 2;
             // 
             // panel1
             // 
@@ -126,7 +126,7 @@
             this.txtUsername.Location = new System.Drawing.Point(126, 178);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(223, 26);
-            this.txtUsername.TabIndex = 16;
+            this.txtUsername.TabIndex = 1;
             // 
             // btnInscription
             // 
@@ -136,10 +136,10 @@
             this.btnInscription.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInscription.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInscription.ForeColor = System.Drawing.Color.White;
-            this.btnInscription.Location = new System.Drawing.Point(117, 396);
+            this.btnInscription.Location = new System.Drawing.Point(117, 424);
             this.btnInscription.Name = "btnInscription";
             this.btnInscription.Size = new System.Drawing.Size(211, 36);
-            this.btnInscription.TabIndex = 15;
+            this.btnInscription.TabIndex = 4;
             this.btnInscription.Text = "Inscription";
             this.btnInscription.UseVisualStyleBackColor = false;
             // 
@@ -179,7 +179,7 @@
             this.txtEmail.Location = new System.Drawing.Point(126, 321);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(223, 26);
-            this.txtEmail.TabIndex = 24;
+            this.txtEmail.TabIndex = 3;
             // 
             // label4
             // 
@@ -210,9 +210,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Font = new System.Drawing.Font("Segoe UI", 14.25F);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "SignUpUC";
-            this.Size = new System.Drawing.Size(437, 514);
+            this.Size = new System.Drawing.Size(437, 525);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);

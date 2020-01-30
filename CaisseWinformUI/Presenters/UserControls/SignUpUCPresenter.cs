@@ -55,15 +55,14 @@ namespace CaisseWinformUI.Presenters.UserControls
                 _loginAccount = _mapper.Map<LoginAccount>(account);
 
                 bool check = _signUpUser.SignUp(_loginAccount);
-
                 if (check)
                 {
-                    _signUpUC.SetErrorMessage = "Vous etes inscrit avec succèes veuiller vous diriger vers la page de connexion";
-                    _signUpUC.SetColorErrorMessage = Color.LightGreen;
+                    _signUpUC.SetErrorMessage = "Vous êtes inscrit avec succès veuillez vous diriger \nvers la page de connexion.";
+                    _signUpUC.SetColorErrorMessage = Color.Green;
                 }
                 else
                 {
-                    _signUpUC.SetErrorMessage = "Une erreur vient de se produire veuiller repeter sinon contacter votre administrateur ";
+                    _signUpUC.SetErrorMessage = "Une erreur vient de se produire veuillez répéter,\nsinon veuillez contacter votre administrateur. ";
                     _signUpUC.SetColorErrorMessage = Color.Red;
                 }
             }

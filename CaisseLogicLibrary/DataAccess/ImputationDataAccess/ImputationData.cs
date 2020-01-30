@@ -9,47 +9,53 @@ using CaisseDTOsLibrary.Models.ImputationModel;
 
 namespace CaisseLogicLibrary.DataAccess.ImputationDataAccess
 {
-     public class ImputationData : IImputationData
-     {
-          private ISqliteDataAccess _sqliteDataAccess;
-          private string query { get; set; }
-          public ImputationData(ISqliteDataAccess sqliteDataAccess)
-          {
-               _sqliteDataAccess = sqliteDataAccess;
-               
-          }
+    public class ImputationData : CaisseLogicLibrary.DataAccess.ImputationDataAccess.IImputationData
+    {
+        private ISqliteDataAccess _sqliteDataAccess;
+        private string query { get; set; }
+        public ImputationData(ISqliteDataAccess sqliteDataAccess)
+        {
+            _sqliteDataAccess = sqliteDataAccess;
 
-          public void Insert(Imputation imputation)
-          {
+        }
 
-              query = "insert into Imputation (libelle) values (@libelle)";
-               _sqliteDataAccess.SaveData<Imputation>(query, imputation);
-          }
+        public void Insert(IImputation imputation)
+        {
 
-          public void Update(Imputation imputation)
-          {
-              query = "update Imputation set libelle = @libelle where id = @id";
-              _sqliteDataAccess.SaveData<Imputation>(query,imputation);
-          }
+            query = "insert into Imputation (libelle,compte) values (@libelle,@compte)";
+            _sqliteDataAccess.SaveData<Imputation>(query, (Imputation)imputation);
+        }
 
-          public void Delete(int id)
-          {
-              query = "delete from Imputation where id = @id";
-               _sqliteDataAccess.SaveData<dynamic>(query, new { id = id });
-          }
+        public void Update(IImputation imputation)
+        {
+            query = "update Imputation set libelle = @libelle where id = @id and compte = @compte";
+            _sqliteDataAccess.SaveData<Imputation>(query, (Imputation)imputation);
+        }
 
-          public Imputation Get(int id)
-          {
-              query = "select * from Imputation where id = @id";
-               var imutation = _sqliteDataAccess.LoadData<Imputation, dynamic>(query, new { id = id }).FirstOrDefault();
-               return imutation;
-          }
+        public void Delete(IImputation imputation)
+        {
+            query = "delete from Imputation where id = @id and compte = @compte";
+            _sqliteDataAccess.SaveData<Imputation>(query, (Imputation)imputation);
+        }
 
-          public List<Imputation> GetAll()
-          {
-              query = "select * from Imputation ";
-               var imutation = _sqliteDataAccess.LoadData<Imputation, dynamic>(query, new { });
-               return imutation;
-          }
-     }
+        public IImputation Get(int id, int compte)
+        {
+            query = "select * from Imputation where id = @id and compte = @compte";
+            var imutation = _sqliteDataAccess.LoadData<Imputation, dynamic>(query, new { id = id, compte = compte }).FirstOrDefault();
+            return imutation;
+        }
+
+        public IEnumerable<IImputation> GetAll(int compte)
+        {
+            query = "select * from Imputation ";
+            var imutation = _sqliteDataAccess.LoadData<Imputation, dynamic>(query, new { compte = compte });
+            return imutation;
+        }
+        public int Search(string libelle, int compte)
+        {
+            query = "select id from Imputation where libelle LIKE @libelle and compte = @compte";
+            var idImputation = _sqliteDataAccess.LoadData<int, dynamic>(query, new { libelle = libelle, compte = compte }).FirstOrDefault();
+            return idImputation;
+        }
+    }
 }

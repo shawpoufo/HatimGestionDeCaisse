@@ -28,6 +28,7 @@ namespace CaisseWinformUI.Views.UserControls
 
         void SignUpUC_Load(object sender, EventArgs e)
         {
+            this.Dock = DockStyle.Fill;
             InitializeEvents();
         }
 

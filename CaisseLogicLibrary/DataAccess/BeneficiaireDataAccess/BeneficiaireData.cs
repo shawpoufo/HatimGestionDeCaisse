@@ -8,7 +8,7 @@ using CaisseSqlLogicLibrary.SqliteDataAccess;
 
 namespace CaisseLogicLibrary.DataAccess.BeneficiaireDataAccess
 {
-     public class BeneficiaireData : IBeneficiaireData
+     public class BeneficiaireData : CaisseLogicLibrary.DataAccess.BeneficiaireDataAccess.IBeneficiaireData 
      {
           private ISqliteDataAccess _sqliteDataAccess;
           private string query { get; set; }
@@ -17,37 +17,43 @@ namespace CaisseLogicLibrary.DataAccess.BeneficiaireDataAccess
           {
                _sqliteDataAccess = sqliteDataAccess;
           }
-          public void Insert(Beneficiaire beneficiaire)
+          public void Insert(IBeneficiaire beneficiaire)
           {
 
-               query = "insert into Beneficiaire (libelle) values (@libelle)";
-               _sqliteDataAccess.SaveData<Beneficiaire>(query, beneficiaire);
+              query = "insert into Beneficiaire (libelle,compte) values (@libelle,@compte)";
+              _sqliteDataAccess.SaveData<Beneficiaire>(query, (Beneficiaire)beneficiaire);
           }
 
-          public void Update(Beneficiaire beneficiaire)
+          public void Update(IBeneficiaire beneficiaire)
           {
-               query = "update Beneficiaire set libelle = @libelle where id = @id";
-               _sqliteDataAccess.SaveData<Beneficiaire>(query, beneficiaire);
+               query = "update Beneficiaire set libelle = @libelle where id = @id and compte =@compte";
+               _sqliteDataAccess.SaveData<Beneficiaire>(query, (Beneficiaire)beneficiaire);
           }
 
-          public void Delete(int id)
+          public void Delete(int id,int compte)
           {
-               query = "delete from Beneficiaire where id = @id";
-               _sqliteDataAccess.SaveData<dynamic>(query, new { id = id });
+              query = "delete from Beneficiaire where id = @id and compte = @compte";
+              _sqliteDataAccess.SaveData<dynamic>(query, new { id = id, compte = compte });
           }
 
-          public Beneficiaire Get(int id)
+          public IBeneficiaire Get(int id, int compte)
           {
-               query = "select * from Beneficiaire where id = @id";
-               var beneficiaire = _sqliteDataAccess.LoadData<Beneficiaire, dynamic>(query, new { id = id }).FirstOrDefault();
+              query = "select * from Beneficiaire where id = @id and compte = @compte";
+              var beneficiaire = _sqliteDataAccess.LoadData<Beneficiaire, dynamic>(query, new { id = id, compte = compte }).FirstOrDefault();
                return beneficiaire;
           }
 
-          public List<Beneficiaire> GetAll()
+          public IEnumerable<IBeneficiaire> GetAll(int compte)
           {
                query = "select * from Beneficiaire ";
-               var beneficiaire = _sqliteDataAccess.LoadData<Beneficiaire, dynamic>(query, new { });
+               var beneficiaire = _sqliteDataAccess.LoadData<Beneficiaire, dynamic>(query, new { compte = compte });
                return beneficiaire;
+          }
+          public int Search(string libelle, int compte)
+          {
+              query = "select id from Beneficiaire where libelle LIKE @libelle and compte = @compte";
+              var idBeneficiaire = _sqliteDataAccess.LoadData<int, dynamic>(query, new { libelle = libelle, compte = compte }).FirstOrDefault();
+              return idBeneficiaire;
           }
      }
 }

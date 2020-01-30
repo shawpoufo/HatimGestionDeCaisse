@@ -46,11 +46,13 @@
     <Compile Include="Models\BilanMensuelModel\IBilanMensuel.cs" />
     <Compile Include="Models\CompteModel\Compte.cs" />
     <Compile Include="Models\CompteModel\ICompte.cs" />
+    <Compile Include="Models\FilterOperationModel\FilterOperation.cs" />
+    <Compile Include="Models\FilterOperationModel\IFilterOperation.cs" />
     <Compile Include="Models\ImputationModel\IImputation.cs" />
     <Compile Include="Models\ImputationModel\Imputation.cs" />
     <Compile Include="Models\LoginAccountModel\ILoginAccount.cs" />
     <Compile Include="Models\LoginAccountModel\LoginAccount.cs" />
-    <Compile Include="Models\FullOperationModel\IOperation.cs" />
+    <Compile Include="Models\FullOperationModel\IFullOperation.cs" />
     <Compile Include="Models\FullOperationModel\FullOperation.cs" />
     <Compile Include="Models\OperationModel\IOperation.cs" />
     <Compile Include="Models\OperationModel\Operation.cs" />
