@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\AccountDataAccess\AccountData.cs" />
+    <Compile Include="DataAccess\AccountDataAccess\IAccountData.cs" />
     <Compile Include="DataAccess\BeneficiaireDataAccess\BeneficiaireData.cs" />
     <Compile Include="DataAccess\BeneficiaireDataAccess\IBeneficiaireData.cs" />
     <Compile Include="DataAccess\FilterOperationDataAccess\FilterOperationData.cs" />

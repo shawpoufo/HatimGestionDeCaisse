@@ -9,6 +9,7 @@ namespace CaisseWinformUI.Presenters.UserControls
         void ProvideBeneficiareDataSource();
         void ProvideImputationDataSource();
         event EventHandler EndOfFiltering;
+        event EventHandler CloseFilterForm;
         void FilterOperations();
         List<int> GetRistrectedYears();
         List<int> GetRistrectedMonths();

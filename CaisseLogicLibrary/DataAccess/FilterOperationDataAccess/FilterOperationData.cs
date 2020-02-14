@@ -58,7 +58,7 @@ namespace CaisseLogicLibrary.DataAccess.FilterOperationDataAccess
             {
                 if (indexRegex == 1)
                 {
-                    Convert.ToDateTime(filterOperationModel.dateFrom).ToString("01/MM/yyyy");
+                    filterOperationModel.dateFrom = Convert.ToDateTime(filterOperationModel.dateFrom).ToString("01/MM/yyyy");
                     int month = Convert.ToInt32(filterOperationModel.dateTo.Split('/').ToList().First());
                     int year = Convert.ToInt32(filterOperationModel.dateTo.Split('/').ToList().Last());
                     int numberOfDays = DateTime.DaysInMonth(year, month);

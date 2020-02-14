@@ -8,5 +8,6 @@ namespace CaisseWinformUI.Views.UserControls
         string SetErrorMessage { set; }
         event EventHandler Login;
         event EventHandler SignUp;
+        void ResetUC();
     }
 }

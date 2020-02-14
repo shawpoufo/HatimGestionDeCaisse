@@ -30,10 +30,15 @@
         {
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblSolde = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.LblOperations = new System.Windows.Forms.Label();
             this.LblRapports = new System.Windows.Forms.Label();
             this.LblManger = new System.Windows.Forms.Label();
             this.MovePanel = new System.Windows.Forms.Panel();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -47,6 +52,11 @@
             // 
             // panel3
             // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
+            this.panel3.Controls.Add(this.label2);
+            this.panel3.Controls.Add(this.lblSolde);
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.panel5);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel3.Location = new System.Drawing.Point(819, 0);
             this.panel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -54,11 +64,49 @@
             this.panel3.Size = new System.Drawing.Size(256, 100);
             this.panel3.TabIndex = 2;
             // 
+            // label2
+            // 
+            this.label2.Image = global::CaisseWinformUI.Properties.Resources.walletIcon;
+            this.label2.Location = new System.Drawing.Point(14, 52);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(64, 40);
+            this.label2.TabIndex = 5;
+            // 
+            // lblSolde
+            // 
+            this.lblSolde.AutoSize = true;
+            this.lblSolde.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSolde.ForeColor = System.Drawing.Color.Goldenrod;
+            this.lblSolde.Location = new System.Drawing.Point(78, 60);
+            this.lblSolde.Name = "lblSolde";
+            this.lblSolde.Size = new System.Drawing.Size(0, 25);
+            this.lblSolde.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label1.Location = new System.Drawing.Point(13, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 30);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "SOLDE";
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(5, 100);
+            this.panel5.TabIndex = 2;
+            // 
             // LblOperations
             // 
             this.LblOperations.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LblOperations.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblOperations.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
+            this.LblOperations.ForeColor = System.Drawing.Color.White;
             this.LblOperations.Location = new System.Drawing.Point(230, 61);
             this.LblOperations.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblOperations.Name = "LblOperations";
@@ -90,7 +138,7 @@
             this.LblManger.Name = "LblManger";
             this.LblManger.Size = new System.Drawing.Size(100, 31);
             this.LblManger.TabIndex = 5;
-            this.LblManger.Text = "Manager";
+            this.LblManger.Text = "Gestion";
             this.LblManger.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // MovePanel
@@ -105,7 +153,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
             this.Controls.Add(this.MovePanel);
             this.Controls.Add(this.LblManger);
             this.Controls.Add(this.LblRapports);
@@ -116,6 +164,8 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "HeaderUC";
             this.Size = new System.Drawing.Size(1075, 100);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -128,6 +178,10 @@
         private System.Windows.Forms.Label LblRapports;
         private System.Windows.Forms.Label LblManger;
         private System.Windows.Forms.Panel MovePanel;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label lblSolde;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
 
     }
 }

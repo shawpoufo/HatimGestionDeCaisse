@@ -45,9 +45,9 @@ namespace CaisseLogicLibrary.DataAccess.BeneficiaireDataAccess
 
           public IEnumerable<IBeneficiaire> GetAll(int compte)
           {
-               query = "select * from Beneficiaire ";
-               var beneficiaire = _sqliteDataAccess.LoadData<Beneficiaire, dynamic>(query, new { compte = compte });
-               return beneficiaire;
+               query = "select * from Beneficiaire where compte = @compte";
+               var beneficiaires = _sqliteDataAccess.LoadData<Beneficiaire, dynamic>(query, new { compte = compte });
+               return beneficiaires;
           }
           public int Search(string libelle, int compte)
           {

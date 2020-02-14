@@ -12,6 +12,10 @@ namespace CaisseWinformUI.Views.UserControls
 {
     public partial class HeaderUC : UserControl,IHeaderUC
     {
+        public string Solde { get { return lblSolde.Text; } set { lblSolde.Text = value; } }
+        public event EventHandler InitializeValues;
+        public event EventHandler ShowOperationsUC;
+        public event EventHandler ShowManageUC;
         public HeaderUC()
         {
             InitializeComponent();
@@ -24,6 +28,8 @@ namespace CaisseWinformUI.Views.UserControls
         void HeaderUC_Load(object sender, EventArgs e)
         {
             InitializeEvents();
+            if (InitializeValues != null)
+                InitializeValues(this, EventArgs.Empty);
         }
         private void InitializeEvents()
         {
@@ -42,12 +48,16 @@ namespace CaisseWinformUI.Views.UserControls
         {
             MoveThePanel(LblManger);
             ChangeLabelColor(LblManger);
+            if (ShowManageUC != null)
+                ShowManageUC(null, EventArgs.Empty);
         }
 
         void LblOperations_Click(object sender, EventArgs e)
         {
             MoveThePanel(LblOperations);
             ChangeLabelColor(LblOperations);
+            if (ShowOperationsUC != null)
+                ShowOperationsUC(null, EventArgs.Empty);
         }
 
         private void MoveThePanel(Label label)
@@ -68,7 +78,7 @@ namespace CaisseWinformUI.Views.UserControls
             listLabel.Add(LblRapports);
 
             listLabel.Where(l => l.Name != label.Name).ToList().ForEach(l => l.ForeColor = Color.Silver);
-            listLabel.Where(l => l.Name == label.Name).ToList().FirstOrDefault().ForeColor = Color.FromArgb(36, 41, 46);
+            listLabel.Where(l => l.Name == label.Name).ToList().FirstOrDefault().ForeColor = Color.White;
         }
 
         public void SetParent(Panel parentPanel)

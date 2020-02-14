@@ -52,7 +52,9 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqliteDataAccess\ISqliteDataAccess.cs" />
+    <Compile Include="SqliteDataAccess\ISqliteTransaction.cs" />
     <Compile Include="SqliteDataAccess\SqliteDataAccess.cs" />
+    <Compile Include="SqliteDataAccess\SqliteTransaction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

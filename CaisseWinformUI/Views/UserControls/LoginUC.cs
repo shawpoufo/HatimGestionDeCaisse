@@ -53,6 +53,12 @@ namespace CaisseWinformUI.Views.UserControls
             if (Login != null)
                 Login(this, e);
         }
+        public void ResetUC()
+        {
+            txtPassword.Text = "";
+            txtUsername.Text = "";
+            lblErrorMessage.Text = "";
+        }
 
 
         public void SetParent(Panel parentPanel)

@@ -43,21 +43,31 @@
       <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.3, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.5.3.3\lib\net40\EPPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentValidation.8.6.1\lib\net45\FluentValidation.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PopupControl">
+      <HintPath>..\..\..\SimplePopup\src\PopupControl\bin\Debug\PopupControl.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ComponentModel.Annotations.4.4.1\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite, Version=1.0.112.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.112.0\lib\net46\System.Data.SQLite.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,11 +80,15 @@
   <ItemGroup>
     <Compile Include="Configurations\AutoMapperConfiguration.cs" />
     <Compile Include="Configurations\ContainerConfiguration.cs" />
+    <Compile Include="Models\FullOperationModel.cs" />
+    <Compile Include="Models\IFullOperationModel.cs" />
     <Compile Include="Models\ILoginAccountModel.cs" />
     <Compile Include="Models\IOperationModel.cs" />
     <Compile Include="Models\LoginAccountModel.cs" />
     <Compile Include="Models\OperationModel.cs" />
     <Compile Include="Presenters\UserControls\AddNewOperationUCPresenter.cs" />
+    <Compile Include="Presenters\UserControls\DownLoad\DownLoadUCPresenter.cs" />
+    <Compile Include="Presenters\UserControls\DownLoad\IDownLoadUCPresenter.cs" />
     <Compile Include="Presenters\UserControls\FilterOperationsUCPresenter.cs" />
     <Compile Include="Presenters\UserControls\IAddNewOperationUCPresenter.cs" />
     <Compile Include="Presenters\ILoginViewPresenter.cs" />
@@ -83,7 +97,7 @@
     <Compile Include="Presenters\MainViewPresenter.cs" />
     <Compile Include="Presenters\UserControls\GridOperationsUCPresenter.cs" />
     <Compile Include="Presenters\UserControls\HeaderUCPresenter.cs" />
-    <Compile Include="Presenters\UserControls\IFilterOperation.cs" />
+    <Compile Include="Presenters\UserControls\IDownLoadUCPresenter.cs" />
     <Compile Include="Presenters\UserControls\IFilterOperationsUCPresenter.cs" />
     <Compile Include="Presenters\UserControls\IGridOperationsUCPresenter.cs" />
     <Compile Include="Presenters\UserControls\IHeaderUCPresenter.cs" />
@@ -93,14 +107,19 @@
     <Compile Include="Presenters\UserControls\ISearchOperationsUCPresenter.cs" />
     <Compile Include="Presenters\UserControls\ISignUpUCPresenter.cs" />
     <Compile Include="Presenters\UserControls\LoginUCPresenter.cs" />
+    <Compile Include="Presenters\UserControls\Manage\IManageUCPresenter.cs" />
+    <Compile Include="Presenters\UserControls\Manage\ManageUCPresenter.cs" />
     <Compile Include="Presenters\UserControls\MoveOperationsUCPresenter.cs" />
     <Compile Include="Presenters\UserControls\OperationsUCPresenter.cs" />
     <Compile Include="Presenters\UserControls\SearchOperationsUCPresenter.cs" />
     <Compile Include="Presenters\UserControls\SignUpUCPresenter.cs" />
+    <Compile Include="Profiles\FullOperationProfile.cs" />
     <Compile Include="Profiles\LoginAccountProfile.cs" />
     <Compile Include="Profiles\OperationProfile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reporting\ExportToExcel.cs" />
+    <Compile Include="Reporting\IExportToExcel.cs" />
     <Compile Include="Validators\LoginAccountValidator.cs" />
     <Compile Include="Validators\OperationValidator.cs" />
     <Compile Include="Validators\SignUpValidator.cs" />
@@ -124,6 +143,13 @@
     <Compile Include="Views\UserControls\AddNewOperationUC.Designer.cs">
       <DependentUpon>AddNewOperationUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\DownLoad\DownLoadUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\DownLoad\DownLoadUC.Designer.cs">
+      <DependentUpon>DownLoadUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\DownLoad\IDownLoadUC.cs" />
     <Compile Include="Views\UserControls\FilterOperationsUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -158,6 +184,13 @@
     <Compile Include="Views\UserControls\LoginUC.Designer.cs">
       <DependentUpon>LoginUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\Manage\IManageUC.cs" />
+    <Compile Include="Views\UserControls\Manage\ManageUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\Manage\ManageUC.Designer.cs">
+      <DependentUpon>ManageUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\MoveOperationsUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -182,9 +215,22 @@
     <Compile Include="Views\UserControls\SignUpUC.Designer.cs">
       <DependentUpon>SignUpUC.cs</DependentUpon>
     </Compile>
+    <None Include="Resources\loadingGif.gif" />
+    <None Include="Resources\downloadIconBlue.png" />
+    <None Include="Resources\downloadIcon.png" />
+    <None Include="Resources\walletIcon.png" />
+    <None Include="Resources\notifyIcon.png" />
+    <None Include="Resources\cancelIcon.png" />
+    <None Include="Resources\refreshIcon.png" />
+    <None Include="Resources\searchIcon2.png" />
+    <None Include="Resources\addIcon.png" />
+    <None Include="Resources\filterIcon.png" />
+    <None Include="Resources\searchIcon.png" />
+    <None Include="Resources\deleteIcon.png" />
+    <None Include="Resources\editIcon.png" />
+    <None Include="Resources\edit.png" />
     <None Include="Resources\right.png" />
     <None Include="Resources\left.png" />
-    <None Include="Resources\editIcon.png" />
     <None Include="Resources\leftArrow.png" />
     <None Include="Resources\rightArrow.png" />
     <None Include="Resources\left-arrow.png" />
@@ -211,6 +257,9 @@
     <EmbeddedResource Include="Views\UserControls\AddNewOperationUC.resx">
       <DependentUpon>AddNewOperationUC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\DownLoad\DownLoadUC.resx">
+      <DependentUpon>DownLoadUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\UserControls\FilterOperationsUC.resx">
       <DependentUpon>FilterOperationsUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -222,6 +271,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UserControls\LoginUC.resx">
       <DependentUpon>LoginUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\Manage\ManageUC.resx">
+      <DependentUpon>ManageUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UserControls\MoveOperationsUC.resx">
       <DependentUpon>MoveOperationsUC.cs</DependentUpon>
@@ -261,6 +313,9 @@
       <Project>{52976b78-8f76-4fe7-ba2f-bd39553c525b}</Project>
       <Name>CaisseLogicLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets')" />

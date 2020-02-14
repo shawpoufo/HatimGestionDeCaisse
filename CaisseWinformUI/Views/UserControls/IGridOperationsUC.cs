@@ -11,6 +11,10 @@ namespace CaisseWinformUI.Views.UserControls
     {
         DataGridView GetDGV { get; }
         Panel GetAsidePanel { get; }
+        string TotalGeneral { get;set;}
+        string Decrement { get; set; }
+        string Increment { get; set; }
         event EventHandler ShowEditOperation;
+        event EventHandler ShowMessageDeleteOpeartion;
     }
 }

@@ -46,8 +46,16 @@ namespace CaisseWinformUI.Views.UserControls
 
         void btnInscription_Click(object sender, EventArgs e)
         {
+            ResetUC();
             if (SignUp != null)
                 SignUp(sender, e);
+        }
+        private void ResetUC()
+        {
+            txtUsername.Text = "";
+            txtPassword.Text = "";
+            txtEmail.Text = "";
+            lblErrorMessage.Text = "";
         }
 
         public void SetParent(Panel parentPanel)

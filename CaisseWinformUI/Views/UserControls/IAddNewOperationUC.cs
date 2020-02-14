@@ -18,6 +18,6 @@ namespace CaisseWinformUI.Views.UserControls
         void SetErrorMessage(System.Collections.Generic.List<FluentValidation.Results.ValidationFailure> errors);
         System.Collections.Generic.IEnumerable<CaisseDTOsLibrary.Models.ImputationModel.IImputation> SetImputationDataSource { set; }
         void SetParent(System.Windows.Forms.Panel parentPanel);
-        
+
     }
 }

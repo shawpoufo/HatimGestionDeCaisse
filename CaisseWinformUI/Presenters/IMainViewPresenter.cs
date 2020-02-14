@@ -6,6 +6,7 @@ namespace CaisseWinformUI.Presenters
     {
         CaisseWinformUI.Views.IMainView GetView { get; }
         ILoginAccount _loginAccount { get; set; }
-        void SendIdAccountToOperationUC();
+        void SendIdAccount();
+        event EventHandler BackToLoginView;
     }
 }

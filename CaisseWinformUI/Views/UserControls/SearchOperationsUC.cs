@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
+using CaisseWinformUI.Views.UserControls.DownLoad;
 
 namespace CaisseWinformUI.Views.UserControls
 {
@@ -16,8 +18,9 @@ namespace CaisseWinformUI.Views.UserControls
         public event EventHandler Filter;
         public event EventHandler NewOperation;
         public event EventHandler Refresh;
-        public event EventHandler DeactivateFilter;
-        public bool SetVisibilityButtonFilter { set { btnActiveFiltre.Visible = value; } }
+        public event EventHandler ShowDownLoadUC;
+        public bool SetVisibilityLabelFilter { set { lblFilter.Visible = value; } }
+        private string oldYear;
 
         public int GetYear
         {
@@ -45,11 +48,36 @@ namespace CaisseWinformUI.Views.UserControls
             {
                 return txtSearch.Text.Trim();
             }
+            
         }
         public SearchOperationsUC()
         {
             InitializeComponent();
             this.Load += SearchOperationsUC_Load;
+            oldYear = "";
+            
+        }
+
+        void txtYear_TextChanged(object sender, EventArgs e)
+        {
+            string text = ((TextBox)sender).Text.Trim();
+
+            if (Regex.IsMatch(text, @"^\d*$") || string.IsNullOrEmpty(text))
+            {
+                oldYear = txtYear.Text.Trim();
+            }
+            else
+            {
+                txtYear.Text = oldYear;
+            }
+        }
+
+        void txtYear_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         void SearchOperationsUC_Load(object sender, EventArgs e)
@@ -57,8 +85,10 @@ namespace CaisseWinformUI.Views.UserControls
             
             InitializeEvents();
             this.Dock = DockStyle.Fill;
-            btnActiveFiltre.Visible = false;
+            lblFilter.Visible = false;
+            
         }
+
 
         private void InitializeEvents()
         {
@@ -66,15 +96,15 @@ namespace CaisseWinformUI.Views.UserControls
             btnRefresh.Click += btnRefresh_Click;
             btnNew.Click += btnNew_Click;
             btnFilter.Click += btnFiltre_Click;
-            btnActiveFiltre.Click += btnActiveFiltre_Click;
+            txtYear.KeyPress += txtYear_KeyPress;
+            txtYear.TextChanged += txtYear_TextChanged;
+            btnDownLoad.Click += btnDownLoad_Click;
         }
 
-        void btnActiveFiltre_Click(object sender, EventArgs e)
+        void btnDownLoad_Click(object sender, EventArgs e)
         {
-
-            if (DeactivateFilter != null)
-                DeactivateFilter(null,EventArgs.Empty);
-            
+            if (ShowDownLoadUC != null)
+                ShowDownLoadUC(sender, EventArgs.Empty);
         }
 
         void btnFiltre_Click(object sender, EventArgs e)
@@ -94,6 +124,8 @@ namespace CaisseWinformUI.Views.UserControls
             if (Refresh != null)
             {
                 txtSearch.Text = "";
+                txtYear.Text = "";
+                lblErrorYear.Text = "";
                 Refresh(this, EventArgs.Empty);
             }
         }

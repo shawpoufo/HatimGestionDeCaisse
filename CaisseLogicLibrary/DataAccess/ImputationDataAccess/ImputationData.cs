@@ -47,7 +47,7 @@ namespace CaisseLogicLibrary.DataAccess.ImputationDataAccess
 
         public IEnumerable<IImputation> GetAll(int compte)
         {
-            query = "select * from Imputation ";
+            query = "select * from Imputation where compte = @compte";
             var imutation = _sqliteDataAccess.LoadData<Imputation, dynamic>(query, new { compte = compte });
             return imutation;
         }

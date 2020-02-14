@@ -7,5 +7,6 @@ namespace CaisseWinformUI.Presenters.UserControls
         LoginUC GetUserControl();
         event EventHandler ShowMainView;
         event EventHandler ShowSignUpUC;
+        void ResetUC();
     }
 }

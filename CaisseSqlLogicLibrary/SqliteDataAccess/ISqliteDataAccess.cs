@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 namespace CaisseSqlLogicLibrary.SqliteDataAccess
 {
-     public interface ISqliteDataAccess
+    public interface ISqliteDataAccess 
      {
           string GetConnectionString(string name);
           List<T> LoadData<T, U>(string sqlQuery, U parameters, string connectionStringName = "caisseCnn");

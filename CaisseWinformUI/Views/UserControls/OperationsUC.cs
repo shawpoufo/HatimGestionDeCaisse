@@ -26,9 +26,9 @@ namespace CaisseWinformUI.Views.UserControls
 
         void OperationsUC_Load(object sender, EventArgs e)
         {
-            topPanel.Height = 119;
+            topPanel.Height = 87;
             //middlePanel.Height = 500;
-            bottomPanel.Height = 40;
+            bottomPanel.Height = 38;
             if (InitializeUCsValues != null)
                 InitializeUCsValues(this, EventArgs.Empty);
         }

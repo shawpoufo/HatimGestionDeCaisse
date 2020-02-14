@@ -8,5 +8,9 @@ namespace CaisseWinformUI.Views.UserControls
 {
     public interface IHeaderUC:IBaseUC
     {
+        string Solde { get; set; }
+        event EventHandler InitializeValues;
+         event EventHandler ShowOperationsUC;
+         event EventHandler ShowManageUC;
     }
 }

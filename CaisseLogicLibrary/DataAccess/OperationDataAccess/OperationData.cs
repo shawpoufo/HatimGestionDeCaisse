@@ -18,30 +18,91 @@ namespace CaisseLogicLibrary.DataAccess.OperationDataAccess
             _sqliteDataAccess = sqliteDataAccess;
         }
 
-        public void Insert(Operation operation)
+        public void Insert(Operation operation,decimal newAmount)
         {
-            query = "insert into Operation "+
-                    "(date,imputation,incrementer,decrementer,beneficiaire,libelle,compte) "+
-                    "values (@date,@imputation,@incrementer,@decrementer,@beneficiaire,@libelle,@compte) ";
-            _sqliteDataAccess.SaveData<Operation>(query, operation);
+            using (SqliteTransaction sql = new SqliteTransaction())
+            {
+                try
+                {
+                    sql.StartTransaction();
+                    query = "insert into Operation " +
+                        "(date,imputation,incrementer,decrementer,beneficiaire,libelle,compte) " +
+                        "values (@date,@imputation,@incrementer,@decrementer,@beneficiaire,@libelle,@compte) ";
+                    sql.SavedDataInTransaction<Operation>(operation, query);
+
+                    query = "update Compte set montant = @newAmount where id = @id";
+
+                    sql.SavedDataInTransaction<dynamic>(new { id = operation.compte, newAmount = newAmount }, query);
+
+                    sql.ComitTransaction();
+                }
+                catch 
+                {
+
+                    sql.RollBackTransaction();
+                }
+            }
+
         }
 
-        public void Update(Operation operation)
+        public void Update(Operation operation, decimal newAmount)
         {
-            query = "update Operation set "+
-                    "date = @date , imputation = @imputation, "+
-                    "incrementer = @incrementer , decrementer = @decrementer, " +
-                    "beneficiaire = @beneficiaire , libelle = @libelle, " +
-                    "compte = @compte " +
-                    "where id = @id";
+            using (SqliteTransaction sql = new SqliteTransaction())
+            {
+                try
+                {
+                    sql.StartTransaction();
+                    query = "update Operation set " +
+                                        "date = @date , imputation = @imputation, " +
+                                        "incrementer = @incrementer , decrementer = @decrementer, " +
+                                        "beneficiaire = @beneficiaire , libelle = @libelle, " +
+                                        "compte = @compte " +
+                                        "where id = @id";
+                    sql.SavedDataInTransaction<Operation>(operation, query);
 
-            _sqliteDataAccess.SaveData<Operation>(query, operation);
+                    query = "update Compte set montant = @newAmount where id = @id";
+
+                    sql.SavedDataInTransaction<dynamic>(new { id = operation.compte, newAmount = newAmount }, query);
+
+                    sql.ComitTransaction();
+                }
+                catch 
+                {
+                    
+                    sql.RollBackTransaction();
+                }
+                
+            }
+
+            
         }
 
-        public void Delete(int id)
+        public void Delete(IOperation operation,decimal newAmount)
         {
-            query = "delete from Operation where id = @id";
-            _sqliteDataAccess.SaveData<dynamic>(query, new { id = id });
+            using (SqliteTransaction sql = new SqliteTransaction())
+            {
+                try
+                {
+                    sql.StartTransaction();
+                    query = "delete from Operation where id = @id";
+
+                    sql.SavedDataInTransaction<dynamic>(new { id = operation.id }, query);
+
+                    query = "update Compte set montant = @newAmount where id = @id";
+
+                    sql.SavedDataInTransaction<dynamic>(new { id = operation.compte, newAmount = newAmount }, query);
+
+                    sql.ComitTransaction();
+                }
+                catch 
+                {
+
+                    sql.RollBackTransaction();
+                }
+
+            }
+            
+
         }
         public IOperation Get(int id)
         {

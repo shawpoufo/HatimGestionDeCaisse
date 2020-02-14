@@ -22,6 +22,10 @@ namespace CaisseWinformUI.Views.UserControls
         event EventHandler RemoveSelectedImputation;
         event EventHandler AddSelectedBeneficiary;
         event EventHandler RemoveSelectedBeneficiary;
+        event EventHandler CancelFilterOperation;
+        void ClearForm();
+        string CountImputions { set; }
+        string CountBeneficiary { set; }
 
     }
 }

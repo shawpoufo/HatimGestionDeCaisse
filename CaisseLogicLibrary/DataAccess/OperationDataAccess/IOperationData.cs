@@ -4,9 +4,9 @@ namespace CaisseLogicLibrary.DataAccess.OperationDataAccess
 {
     public interface IOperationData
     {
-        void Delete(int id);
-        void Insert(CaisseDTOsLibrary.Models.OperationModel.Operation operation);
-        void Update(CaisseDTOsLibrary.Models.OperationModel.Operation operation);
+        void Delete(IOperation operation, decimal newAmount);
+        void Insert(CaisseDTOsLibrary.Models.OperationModel.Operation operation,decimal newAmount);
+        void Update(Operation operation, decimal newAmount);
         IOperation Get(int id);
     }
 }

@@ -7,10 +7,10 @@ namespace CaisseWinformUI.Views.UserControls
         event EventHandler Filter;
         event EventHandler QuickSearch;
         event EventHandler Refresh;
-        event EventHandler DeactivateFilter;
+        event EventHandler ShowDownLoadUC;
         int GetYear { get; }
         string GetTerm { get; }
-        bool SetVisibilityButtonFilter { set; }
+        bool SetVisibilityLabelFilter { set; }
 
     }
 }

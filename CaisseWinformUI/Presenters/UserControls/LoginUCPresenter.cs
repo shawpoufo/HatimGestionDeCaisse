@@ -80,6 +80,10 @@ namespace CaisseWinformUI.Presenters.UserControls
         {
             return (LoginUC)_loginUC;
         }
+        public void ResetUC()
+        {
+            _loginUC.ResetUC();
+        }
 
         private LoginAccountModel InitializeLoginAccountModel()
         {

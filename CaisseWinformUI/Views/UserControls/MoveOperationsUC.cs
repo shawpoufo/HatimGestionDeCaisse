@@ -14,7 +14,8 @@ namespace CaisseWinformUI.Views.UserControls
     {
         public string Month { get { return lblMonth.Text.Trim(); } set { lblMonth.Text = value; } }
         public string Year { get { return lblYear.Text.Trim(); } set { lblYear.Text = value; } }
-        public bool ButtonsMoveVisibility 
+        public string CountOperation { get { return lblCountOperation.Text; } set { lblCountOperation.Text = value; } }
+        public bool ButtonsMoveYearVisibility 
         {
             set 
             {

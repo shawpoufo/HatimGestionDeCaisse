@@ -24,11 +24,14 @@ namespace CaisseWinformUI.Views.UserControls
         public Label LabelErrorImputation { get { return lblErrorImputation; } }
         public Label LabelErrorBeneficiary { get { return lblErrorBeneficiary; } }
         public string Libelles { get { return txtLibelles.Text.Trim(); } }
+        public string CountImputions { set { countImputation.Text = value; } }
+        public string CountBeneficiary { set { countBeneficiary.Text = value; } }
         public event EventHandler Filter;
         public event EventHandler AddSelectedImputation;
         public event EventHandler RemoveSelectedImputation;
         public event EventHandler AddSelectedBeneficiary;
         public event EventHandler RemoveSelectedBeneficiary;
+        public event EventHandler CancelFilterOperation;
 
         public FilterOperationsUC()
         {
@@ -68,6 +71,14 @@ namespace CaisseWinformUI.Views.UserControls
             btnRemoveImputation.Click += btnRemoveImputation_Click;
             btnAddBeneficiairy.Click += btnAddBeneficiairy_Click;
             btnRemoveBeneficiairy.Click += btnRemoveBeneficiairy_Click;
+
+            btnClose.Click += btnClose_Click;
+        }
+
+        void btnClose_Click(object sender, EventArgs e)
+        {
+            if (CancelFilterOperation != null)
+                CancelFilterOperation(this, EventArgs.Empty);
         }
 
 
@@ -142,6 +153,21 @@ namespace CaisseWinformUI.Views.UserControls
         public void SetParent(Panel parentPanel)
         {
             Parent = parentPanel;
+        }
+        public void ClearForm()
+        {
+            txtDateFrom.Text = "";
+            txtDateTo.Text = "";
+            cbxSelectedBeneficiarys.Items.Clear();
+            cbxSelectedImputations.Items.Clear();
+            cbxSelectedBeneficiarys.Text = "";
+            cbxSelectedImputations.Text = "";
+            txtLibelles.Text = "";
+            countBeneficiary.Text = "0";
+            countImputation.Text = "0";
+            lblErrorDate.Text = "";
+            lblErrorBeneficiary.Text = "";
+            lblErrorImputation.Text = "";
         }
     }
 }

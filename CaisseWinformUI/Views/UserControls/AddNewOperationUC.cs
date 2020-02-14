@@ -11,6 +11,7 @@ using CaisseDTOsLibrary.Models.ImputationModel;
 using CaisseDTOsLibrary.Models.BeneficiaireModel;
 using System.Globalization;
 using FluentValidation.Results;
+using System.Text.RegularExpressions;
 
 namespace CaisseWinformUI.Views.UserControls
 {
@@ -30,11 +31,16 @@ namespace CaisseWinformUI.Views.UserControls
         public IEnumerable<IImputation> SetImputationDataSource { set { cbxImputation.DataSource = value; } }
         public IEnumerable<IBeneficiaire> SetBeneficiaireDataSource { set { cbxBeneficiaire.DataSource = value; } }
         public string Title { set { lblTitle.Text = value; } }
+
+        private string oldIncrement;
+        private string oldDecrement;
         
         public AddNewOperationUC()
         {
             InitializeComponent();
             this.Load += AddNewOperationUC_Load;
+            oldIncrement = "";
+            oldDecrement = "";
         }
 
         void AddNewOperationUC_Load(object sender, EventArgs e)
@@ -55,10 +61,41 @@ namespace CaisseWinformUI.Views.UserControls
             btnCancel.Click += btnCancel_Click;
             txtIncrement.KeyPress += txtIncrement_KeyPress;
             txtDecrement.KeyPress += txtDecrement_KeyPress;
+            txtIncrement.TextChanged += txtIncrement_TextChanged;
+            txtDecrement.TextChanged += txtDecrement_TextChanged;
             txtDate.KeyPress += txtDate_KeyPress;
             cbxImputation.KeyPress += cbxImputation_KeyPress;
             cbxBeneficiaire.KeyPress += cbxBeneficiaire_KeyPress;
+
             
+        }
+
+        void txtDecrement_TextChanged(object sender, EventArgs e)
+        {
+            string text = ((TextBox)sender).Text.Trim();
+
+            if (Regex.IsMatch(text, @"^\d+\.?(\d+)?$") || string.IsNullOrEmpty(text))
+            {
+                oldDecrement = txtDecrement.Text.Trim();
+            }
+            else
+            {
+                txtDecrement.Text = oldDecrement;
+            }
+        }
+
+        void txtIncrement_TextChanged(object sender, EventArgs e)
+        {
+            string text = ((TextBox)sender).Text.Trim();
+
+            if (Regex.IsMatch(text, @"^\d+\.?(\d+)?$") || string.IsNullOrEmpty(text))
+            {
+                oldIncrement = txtIncrement.Text.Trim();
+            }
+            else
+            {
+                txtIncrement.Text = oldIncrement;
+            }
         }
 
         void cbxBeneficiaire_KeyPress(object sender, KeyPressEventArgs e)
@@ -73,7 +110,7 @@ namespace CaisseWinformUI.Views.UserControls
 
         void txtDate_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '-') && (e.KeyChar != '/'))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '-') && (e.KeyChar != '/') )
             {
                 e.Handled = true;    
                 
@@ -82,7 +119,7 @@ namespace CaisseWinformUI.Views.UserControls
 
         void txtDecrement_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            lblErrorAmount.Text = "";
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.' || ((TextBox)sender).Text.Contains('.')) || (e.KeyChar == '.' && string.IsNullOrEmpty(((TextBox)sender).Text.Trim())))
             {
                 e.Handled = true;
@@ -92,6 +129,7 @@ namespace CaisseWinformUI.Views.UserControls
 
         void txtIncrement_KeyPress(object sender, KeyPressEventArgs e)
         {
+            lblErrorAmount.Text = "";
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.' || ((TextBox)sender).Text.Contains('.')) || (e.KeyChar == '.' && string.IsNullOrEmpty(((TextBox)sender).Text.Trim())))
             {
                 e.Handled = true;

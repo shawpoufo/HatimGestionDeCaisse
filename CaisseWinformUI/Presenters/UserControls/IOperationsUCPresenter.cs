@@ -6,5 +6,6 @@ namespace CaisseWinformUI.Presenters.UserControls
     {
         int IdCompte { get; set; }
         IOperationsUC GetUC { get; }
+        event EventHandler RefreshAccount;
     }
 }

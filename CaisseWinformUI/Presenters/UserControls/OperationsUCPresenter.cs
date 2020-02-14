@@ -15,57 +15,106 @@ namespace CaisseWinformUI.Presenters.UserControls
     {
         private IOperationsUC _operationsUC;
         public IOperationsUC GetUC { get { return _operationsUC;} }
-        private ISearchOperation _searchOperation;
         private IGridOperationsUCPresenter _gridOperationsUCPresenter;
         private ISearchOperationsUCPresenter _searchOperationsUCPresenter;
         private IMoveOperationsUCPresenter _moveOperationsUCPresenter;
-
+        public event EventHandler RefreshAccount;
         public int IdCompte { get; set; }
 
-        public OperationsUCPresenter(IOperationsUC operationsUC, ISearchOperation searchOperation, IGridOperationsUCPresenter gridOperationsUCPresenter, ISearchOperationsUCPresenter searchOperationsUCPresenter, IMoveOperationsUCPresenter moveOperationsUCPresenter)
+        public OperationsUCPresenter(IOperationsUC operationsUC, IGridOperationsUCPresenter gridOperationsUCPresenter, ISearchOperationsUCPresenter searchOperationsUCPresenter, IMoveOperationsUCPresenter moveOperationsUCPresenter)
         {
             _operationsUC = operationsUC;
-            _searchOperation = searchOperation;
             _gridOperationsUCPresenter = gridOperationsUCPresenter;
             _searchOperationsUCPresenter = searchOperationsUCPresenter;
             _moveOperationsUCPresenter = moveOperationsUCPresenter;
             SubscribeToEventsSetup();
             SetUserControlsToPanel();
+           
      
         }
         private void SubscribeToEventsSetup()
         {
             _operationsUC.InitializeUCsValues += _operationsUC_InitializeUCsValues;
 
-            _searchOperationsUCPresenter.QuickSearchEnd += _searchOperationsUCPresenter_QuickSearchEnd;
+            _searchOperationsUCPresenter.ProvideDataSource += _searchOperationsUCPresenter_ProvideDataSource;
             _searchOperationsUCPresenter.ShowAddNewOperationUC += _searchOperationsUCPresenter_ShowAddNewOperationUC;
             _searchOperationsUCPresenter.ShowFilterOperationUC += _searchOperationsUCPresenter_ShowFilterOperationUC;
             _searchOperationsUCPresenter.ReFiltering += _searchOperationsUCPresenter_ReFiltering;
+            _searchOperationsUCPresenter.FilterDeactivated += _searchOperationsUCPresenter_FilterDeactivated;
             _gridOperationsUCPresenter.EndOfSaveOperation += _gridOperationsUCPresenter_EndOfSaveOperation;
             _gridOperationsUCPresenter.ActivateFilter += _gridOperationsUCPresenter_ActivateFilter;
             _moveOperationsUCPresenter.ChangeMonth += _moveOperationsUCPresenter_ChangeMonth;
             _moveOperationsUCPresenter.ChangeYear += _moveOperationsUCPresenter_ChangeYear;
+            _searchOperationsUCPresenter.GetdownLoadUCPresenter.GetUC.DownLoad += GetUC_DownLoad;
             
             
+        }
+
+        async void GetUC_DownLoad(object sender, EventArgs e)
+        {
+            if(!string.IsNullOrEmpty(sender.ToString()))
+            {
+                _searchOperationsUCPresenter.GetdownLoadUCPresenter.GetUC.Loading = true;
+                int year = int.Parse(_moveOperationsUCPresenter.GetUC.Year);
+                int month = int.Parse(_moveOperationsUCPresenter.GetUC.Month);
+                List<FullOperation> records = _searchOperationsUCPresenter.ListFullOperations.Where(o => o.date.Year == year && o.date.Month == month).Cast<FullOperation>().ToList();
+                 await Task.Run(()=>_searchOperationsUCPresenter.GetdownLoadUCPresenter.DownLoad(records, sender.ToString(), Environment.GetFolderPath(Environment.SpecialFolder.Desktop).ToString()));
+                _searchOperationsUCPresenter.HideDownLoadUC();
+                _searchOperationsUCPresenter.GetdownLoadUCPresenter.ResetUC();
+            }
+            else
+            {
+                _searchOperationsUCPresenter.GetdownLoadUCPresenter.GetUC.FileNameRequired = true;
+            }
+            
+        }
+
+        void _searchOperationsUCPresenter_FilterDeactivated(object sender, EventArgs e)
+        {
+            if (!_searchOperationsUCPresenter.FlagFilteringActivate)
+            {
+                _moveOperationsUCPresenter.GetUC.ButtonsMoveYearVisibility = false;
+                _moveOperationsUCPresenter.ListRestrictedMonths = new List<int>();
+                _moveOperationsUCPresenter.ListYear = new List<int>();
+                _gridOperationsUCPresenter.GetFilterOperationsUCPresenter.GetUC.ClearForm(); 
+            }
+        }
+
+
+        void _searchOperationsUCPresenter_ProvideDataSource(object sender, EventArgs e)
+        {
+            _gridOperationsUCPresenter.ProvideDgvDataSource((List<FullOperation>)sender);
+
+            if (!_searchOperationsUCPresenter.FlagFilteringActivate)
+            {
+                _moveOperationsUCPresenter.GetUC.Month = _searchOperationsUCPresenter.LastSearchedMonth.ToString();
+                _moveOperationsUCPresenter.GetUC.Year = _searchOperationsUCPresenter.LastSearchedYear.ToString();
+            }
+            _moveOperationsUCPresenter.GetUC.CountOperation =_searchOperationsUCPresenter.ListFullOperations.Count().ToString();
         }
 
         void _moveOperationsUCPresenter_ChangeYear(object sender, EventArgs e)
         {
-            if (!_searchOperationsUCPresenter.FlagFilteringActivate)
-                _searchOperationsUCPresenter.LastSearchedYear = (int)sender;
-            int year = _searchOperationsUCPresenter.LastSearchedYear;
-            int month = _searchOperationsUCPresenter.LastSearchedMonth;
-            string term = _searchOperationsUCPresenter.LastSearchedTerm;
-            _searchOperationsUCPresenter.SearchInList(year, month, term);
+
+            int year = (int)sender;
+            int month = int.Parse(_moveOperationsUCPresenter.GetUC.Month);
+            _searchOperationsUCPresenter.SearchInList(year, month, "");
         }
 
         void _moveOperationsUCPresenter_ChangeMonth(object sender, EventArgs e)
         {
-            if(!_searchOperationsUCPresenter.FlagFilteringActivate)
-                _searchOperationsUCPresenter.LastSearchedMonth = (int)sender;
             int year = _searchOperationsUCPresenter.LastSearchedYear;
-            int month = (int)sender;//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+            int month = (int)sender;
             string term = _searchOperationsUCPresenter.LastSearchedTerm;
+
+            if (!_searchOperationsUCPresenter.FlagFilteringActivate)
+             _searchOperationsUCPresenter.LastSearchedMonth = (int)sender;
+            else
+            {
+                year = int.Parse(_moveOperationsUCPresenter.GetUC.Year);
+                term = "";
+            }
+            
             _searchOperationsUCPresenter.SearchInList(year, month, term);
         }
 
@@ -76,16 +125,16 @@ namespace CaisseWinformUI.Presenters.UserControls
         }
 
         void _gridOperationsUCPresenter_ActivateFilter(object sender, EventArgs e)
-        {
-            int filterMonthFrom = (_gridOperationsUCPresenter.GetFilterOperationsUCPresenter.GetRistrectedMonths().Count > 0) ? _gridOperationsUCPresenter.GetFilterOperationsUCPresenter.GetRistrectedMonths()[0] : 1;
-            int filterYearFrom = _gridOperationsUCPresenter.GetFilterOperationsUCPresenter.GetRistrectedYears()[0];
-            _searchOperationsUCPresenter.StandardSearch(filterYearFrom, filterMonthFrom, "");
+        {           
             _searchOperationsUCPresenter.FlagFilteringActivate = true;
-            _searchOperationsUCPresenter.FlagSearchInDB = false;
-            _searchOperationsUCPresenter.GetUC.SetVisibilityButtonFilter = true;
+            _searchOperationsUCPresenter.GetUC.SetVisibilityLabelFilter = true;
             _searchOperationsUCPresenter.ListFullOperations = ((List<FullOperation>)sender);
-            _moveOperationsUCPresenter.GetUC.Month = _searchOperationsUCPresenter.LastSearchedMonth.ToString();
-            _moveOperationsUCPresenter.ListYear = _searchOperationsUCPresenter.ListFullOperations.Select(o => o.date.Year).Distinct().ToList();
+            _moveOperationsUCPresenter.GetUC.Month = _gridOperationsUCPresenter.GetFilterOperationsUCPresenter.GetRistrectedMonths().First().ToString();
+            _moveOperationsUCPresenter.GetUC.Year = _gridOperationsUCPresenter.GetFilterOperationsUCPresenter.GetRistrectedYears().First().ToString();
+            _moveOperationsUCPresenter.ListRestrictedMonths = _gridOperationsUCPresenter.GetFilterOperationsUCPresenter.GetRistrectedMonths();
+            _moveOperationsUCPresenter.ListYear = GetDifferenceBetweenTwoYears(_gridOperationsUCPresenter.GetFilterOperationsUCPresenter.GetRistrectedYears());           
+            _moveOperationsUCPresenter.GetUC.ButtonsMoveYearVisibility = (_gridOperationsUCPresenter.GetFilterOperationsUCPresenter.GetRistrectedYears().Distinct().ToList().Count > 1) ? true : false;
+            _moveOperationsUCPresenter.GetUC.CountOperation = _searchOperationsUCPresenter.ListFullOperations.Count().ToString();
         }
 
         void _searchOperationsUCPresenter_ShowFilterOperationUC(object sender, EventArgs e)
@@ -94,28 +143,45 @@ namespace CaisseWinformUI.Presenters.UserControls
             ((UserControl)_gridOperationsUCPresenter.GetFilterOperationsUCPresenter.GetUC).BringToFront();
             _gridOperationsUCPresenter.GetFilterOperationsUCPresenter.ProvideBeneficiareDataSource();
             _gridOperationsUCPresenter.GetFilterOperationsUCPresenter.ProvideImputationDataSource();
-            //_gridOperationsUCPresenter.GetNewOperationPresenter.ResetOperationForm();
+           
         }
 
         void _gridOperationsUCPresenter_EndOfSaveOperation(object sender, EventArgs e)
         {
-            int year = int.Parse(_moveOperationsUCPresenter.GetUC.Year);
+            int year = _searchOperationsUCPresenter.LastSearchedYear;
             int month = int.Parse(_moveOperationsUCPresenter.GetUC.Month);
-            string term = _searchOperationsUCPresenter.LastSearchedTerm;
+            string term =_searchOperationsUCPresenter.LastSearchedTerm;
+            _searchOperationsUCPresenter.StandardSearch(year, month, term);
+
+            if (_searchOperationsUCPresenter.FlagFilteringActivate)
+            {
+                year = int.Parse(_moveOperationsUCPresenter.GetUC.Year);
+                term = "";
+            }
+                
             _searchOperationsUCPresenter.Refresh(year,month, term);
+
+            if (_searchOperationsUCPresenter.FlagFilteringActivate)
+            {
+                _moveOperationsUCPresenter.GetUC.Month = month.ToString();
+                _moveOperationsUCPresenter.GetUC.Year = year.ToString();
+            }
             _gridOperationsUCPresenter.GetUC.GetAsidePanel.Visible = false;
+
+            if (RefreshAccount != null)
+                RefreshAccount(this, EventArgs.Empty);
 
         }
 
         void _operationsUC_InitializeUCsValues(object sender, EventArgs e)
         {
             _searchOperationsUCPresenter.IdAccountLoggin = IdCompte;
-            _searchOperationsUCPresenter.SearchInDataBase(DateTime.Now.Year, DateTime.Now.Month, "");
-            _gridOperationsUCPresenter.GetNewOperationPresenter.ProvideBeneficiareDataSource();
-            _gridOperationsUCPresenter.GetNewOperationPresenter.ProvideImputationDataSource();
-            _gridOperationsUCPresenter.GetNewOperationPresenter.IdAccount = IdCompte;
             _gridOperationsUCPresenter.IdCompte = IdCompte;
             _gridOperationsUCPresenter.GetFilterOperationsUCPresenter.idCompte = IdCompte;
+            _gridOperationsUCPresenter.GetNewOperationPresenter.IdAccount = IdCompte;
+            _searchOperationsUCPresenter.SearchInDataBase(DateTime.Now.Year, DateTime.Now.Month, "");
+            _gridOperationsUCPresenter.GetNewOperationPresenter.ProvideBeneficiareDataSource();
+            _gridOperationsUCPresenter.GetNewOperationPresenter.ProvideImputationDataSource();   
         }
 
         void _searchOperationsUCPresenter_ShowAddNewOperationUC(object sender, EventArgs e)
@@ -127,20 +193,21 @@ namespace CaisseWinformUI.Presenters.UserControls
             
         }
 
-        void _searchOperationsUCPresenter_QuickSearchEnd(object sender, EventArgs e)
-        {
-            _gridOperationsUCPresenter.ProvideDgvDataSource((List<FullOperation>)sender);
-            _moveOperationsUCPresenter.GetUC.Month = _searchOperationsUCPresenter.LastSearchedMonth.ToString();
-            _moveOperationsUCPresenter.GetUC.Year = _searchOperationsUCPresenter.LastSearchedYear.ToString();
-        }
 
         private void SetUserControlsToPanel()
         {           
             _searchOperationsUCPresenter.GetUC.SetParent(_operationsUC.GetTopPanel);
             _gridOperationsUCPresenter.GetUC.SetParent(_operationsUC.GetMiddlePanel);
-            _moveOperationsUCPresenter.GetUC.SetParent(_operationsUC.GetBottomPanel);
-            
-
+            _moveOperationsUCPresenter.GetUC.SetParent(_operationsUC.GetBottomPanel);        
+        }
+        private List<int> GetDifferenceBetweenTwoYears(List<int> listYears)
+        {
+            List<int> years = new List<int>();
+            for (int i = listYears[0]; i <= listYears[1]; i++)
+            {
+                years.Add(i);
+            }
+            return years;
         }
     }
 }

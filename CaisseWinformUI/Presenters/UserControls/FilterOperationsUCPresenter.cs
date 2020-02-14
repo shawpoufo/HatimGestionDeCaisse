@@ -26,7 +26,7 @@ namespace CaisseWinformUI.Presenters.UserControls
         private IFilterOperationData _filterOperationData;
         public int idCompte {get;set;}
         public event EventHandler EndOfFiltering;
-
+        public event EventHandler CloseFilterForm;
         public FilterOperationsUCPresenter(IFilterOperationsUC filterOperationsUC, IImputationData imputationData, IBeneficiaireData beneficiaireData, IFilterOperation filterOperationModel, IFilterOperationData filterOperationData)
         {
             _filterOperationsUC = filterOperationsUC;
@@ -43,26 +43,37 @@ namespace CaisseWinformUI.Presenters.UserControls
             _filterOperationsUC.RemoveSelectedImputation += _filterOperationsUC_RemoveSelectedImputation;
             _filterOperationsUC.AddSelectedBeneficiary += _filterOperationsUC_AddSelectedBeneficiary;
             _filterOperationsUC.RemoveSelectedBeneficiary += _filterOperationsUC_RemoveSelectedBeneficiary;
+            _filterOperationsUC.CancelFilterOperation += _filterOperationsUC_CancelFilterOperation;
+        }
+
+        void _filterOperationsUC_CancelFilterOperation(object sender, EventArgs e)
+        {
+            if (CloseFilterForm != null)
+                CloseFilterForm(this, EventArgs.Empty);
         }
 
         void _filterOperationsUC_RemoveSelectedBeneficiary(object sender, EventArgs e)
         {
             RemoveObjectFromComboBox(_filterOperationsUC.GetCbxSelectedBeneficiarys, _filterOperationsUC.LabelErrorBeneficiary);
+            _filterOperationsUC.CountBeneficiary = _filterOperationsUC.GetCbxSelectedBeneficiarys.Items.Count.ToString();
         }
 
         void _filterOperationsUC_AddSelectedBeneficiary(object sender, EventArgs e)
         {
             AddObjectToComboBox(_filterOperationsUC.GetCbxBeneficiarys, _filterOperationsUC.GetCbxSelectedBeneficiarys, _filterOperationsUC.LabelErrorBeneficiary);
+            _filterOperationsUC.CountBeneficiary = _filterOperationsUC.GetCbxSelectedBeneficiarys.Items.Count.ToString();
         }
 
         void _filterOperationsUC_RemoveSelectedImputation(object sender, EventArgs e)
         {
             RemoveObjectFromComboBox(_filterOperationsUC.GetCbxSelectedImputations, _filterOperationsUC.LabelErrorImputation);
+            _filterOperationsUC.CountImputions = _filterOperationsUC.GetCbxSelectedImputations.Items.Count.ToString();
         }
 
         void _filterOperationsUC_AddSelectedImputation(object sender, EventArgs e)
         {
             AddObjectToComboBox(_filterOperationsUC.GetCbxImputations, _filterOperationsUC.GetCbxSelectedImputations, _filterOperationsUC.LabelErrorImputation);
+            _filterOperationsUC.CountImputions = _filterOperationsUC.GetCbxSelectedImputations.Items.Count.ToString();
         }
 
         void _filterOperationsUC_Filter(object sender, EventArgs e)
@@ -90,11 +101,16 @@ namespace CaisseWinformUI.Presenters.UserControls
             {
                 if (ValidateDate(datesToValidate))
                 {
-                    _filterOperationModel = InitializeFilterOperationModel();
-                    var ls = _filterOperationData.Filter(_filterOperationModel);
-                    _filterOperationsUC.SetErrorDateMessage = "";
-                    if (EndOfFiltering != null)
-                        EndOfFiltering(ls, EventArgs.Empty);
+                    if (DateToShouldBeHigher(datesToValidate))
+                    {
+                        _filterOperationModel = InitializeFilterOperationModel();
+                        var ls = _filterOperationData.Filter(_filterOperationModel);
+                        _filterOperationsUC.SetErrorDateMessage = "";
+                        if (EndOfFiltering != null)
+                            EndOfFiltering(ls, EventArgs.Empty); 
+                    }
+                    else
+                        _filterOperationsUC.SetErrorDateMessage = "La date 'Au' doit être supérieur a la date 'Du'";
                 }
                 else
                     _filterOperationsUC.SetErrorDateMessage = "Date invalide";
@@ -126,6 +142,43 @@ namespace CaisseWinformUI.Presenters.UserControls
             }
 
             return true;
+        }
+        private bool DateToShouldBeHigher(List<string> datesToValidate)
+        {
+            Regex regex = new Regex(@"^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$");
+            if(regex.Match(datesToValidate.First()).Success)
+            {
+                string[] from = datesToValidate.First().Split('/');
+                string[] to = datesToValidate.Last().Split('/');
+                DateTime dateFrom = new DateTime(Convert.ToInt32(from[2]), Convert.ToInt32(from[1]), Convert.ToInt32(from[0]));
+                DateTime dateTo = new DateTime(Convert.ToInt32(to[2]), Convert.ToInt32(to[1]), Convert.ToInt32(to[0]));
+
+                if (DateTime.Compare(dateTo, dateFrom) >= 0)
+                    return true;
+            }
+
+            regex = new Regex(@"^((((0)[1-9])|((1)[0-2]))(\/)\d{4})$");
+
+            if (regex.Match(datesToValidate.First()).Success)
+            {
+                string[] from = datesToValidate.First().Split('/');
+                string[] to = datesToValidate.Last().Split('/');
+                DateTime dateFrom = new DateTime(Convert.ToInt32(from[1]),Convert.ToInt32(from[0]),01);
+                DateTime dateTo = new DateTime( Convert.ToInt32(to[1]), Convert.ToInt32(to[0]),12);
+
+                if (DateTime.Compare(dateTo, dateFrom) >= 0)
+                    return true;
+            }
+
+            regex = new Regex(@"^(\d{1,4})$");
+            if (regex.Match(datesToValidate.First()).Success)
+            {
+                if (Convert.ToInt32(datesToValidate.Last()) >= Convert.ToInt32(datesToValidate.First()))
+                    return true;
+            }
+
+
+            return false;
         }
         private FilterOperation InitializeFilterOperationModel()
         {
@@ -211,10 +264,23 @@ namespace CaisseWinformUI.Presenters.UserControls
         public List<int> GetRistrectedMonths()
         {
             List<int> restrictedMonths = new List<int>();
-            if (_filterOperationModel.dateFrom.Length >4)
+            Regex regex = new Regex(@"^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$");
+            if (regex.Match(_filterOperationModel.dateFrom).Success)
             {
-                restrictedMonths.Add(Convert.ToInt32(_filterOperationModel.dateFrom.Substring(_filterOperationModel.dateFrom.Length - 7, 2)));
-                restrictedMonths.Add(Convert.ToInt32(_filterOperationModel.dateTo.Substring(_filterOperationModel.dateFrom.Length - 7, 2))); 
+                restrictedMonths.Add(Convert.ToInt32(_filterOperationModel.dateFrom.Substring(3, 2)));
+                restrictedMonths.Add(Convert.ToInt32(_filterOperationModel.dateTo.Substring(3, 2))); 
+            }
+            regex = new Regex(@"^((((0)[1-9])|((1)[0-2]))(\/)\d{4})$");
+            if (regex.Match(_filterOperationModel.dateFrom).Success)
+            {
+                restrictedMonths.Add(Convert.ToInt32(_filterOperationModel.dateFrom.Substring(0, 2)));
+                restrictedMonths.Add(Convert.ToInt32(_filterOperationModel.dateTo.Substring(0, 2)));
+            }
+            regex = new Regex(@"^(\d{1,4})$");
+            if (regex.Match(_filterOperationModel.dateFrom).Success)
+            {
+                restrictedMonths.Add(1);
+                restrictedMonths.Add(12);
             }
             return restrictedMonths;
         }
