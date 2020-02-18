@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CaisseDTOsLibrary.Models.FullOperationModel;
+using System;
 using System.Collections.Generic;
 namespace CaisseWinformUI.Presenters.UserControls
 {
@@ -13,5 +14,6 @@ namespace CaisseWinformUI.Presenters.UserControls
         void FilterOperations();
         List<int> GetRistrectedYears();
         List<int> GetRistrectedMonths();
+        IEnumerable<IFullOperation> GetPreviousMonthOperations(int currentMonth, int currentYear);
     }
 }

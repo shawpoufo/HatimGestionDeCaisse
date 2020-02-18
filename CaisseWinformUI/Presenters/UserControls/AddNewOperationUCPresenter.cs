@@ -96,7 +96,7 @@ namespace CaisseWinformUI.Presenters.UserControls
                 }
 
                 IdEditOperation = 0;
-
+                
                 if (EndOfSaveOperation != null)
                     EndOfSaveOperation(newOperation, EventArgs.Empty);
             }
@@ -125,17 +125,15 @@ namespace CaisseWinformUI.Presenters.UserControls
 
         public void ProvideImputationDataSource()
         {
-           
-            List<Imputation> imputations = _imputationData.GetAll(IdAccount).Cast<Imputation>().ToList();
-            imputations.Insert(0, new Imputation() { id = 0, libelle = "-- Veuillez choisire --" });
-            _addNewOperationUC.SetImputationDataSource = imputations;
+
+            _addNewOperationUC.SetImputationDataSource = _imputationData.GetAll(IdAccount).Cast<Imputation>().ToList();
+
             
         }
         public void ProvideBeneficiareDataSource()
         {
-            List<Beneficiaire> beneficiaires = _beneficiaireData.GetAll(IdAccount).Cast<Beneficiaire>().ToList();
-            beneficiaires.Insert(0, new Beneficiaire() { id = 0, libelle = "-- Veuillez choisire --" });
-            _addNewOperationUC.SetBeneficiaireDataSource = beneficiaires;
+            _addNewOperationUC.SetBeneficiaireDataSource = _beneficiaireData.GetAll(IdAccount).Cast<Beneficiaire>().ToList();
+
         }
 
         private OperationModel InitilizeOperationModelValues()
@@ -144,12 +142,12 @@ namespace CaisseWinformUI.Presenters.UserControls
             model.compte = IdAccount;
             model.date = _addNewOperationUC.Date;
 
-            if (_addNewOperationUC.IdImputation == 0 && _addNewOperationUC.GetTextImputation.ToLower() != ("-- veuillez choisire --").ToLower() && !string.IsNullOrEmpty(_addNewOperationUC.GetTextImputation))
+            if (_addNewOperationUC.IdImputation == 0  && !string.IsNullOrEmpty(_addNewOperationUC.GetTextImputation))
                 model.imputation = -1;
             else
                 model.imputation = _addNewOperationUC.IdImputation;
 
-            if (_addNewOperationUC.IdBeneficiaire == 0 && _addNewOperationUC.GetTextBeneficiaire.ToLower() != ("-- veuillez choisire --").ToLower() && !string.IsNullOrEmpty(_addNewOperationUC.GetTextBeneficiaire))
+            if (_addNewOperationUC.IdBeneficiaire == 0  && !string.IsNullOrEmpty(_addNewOperationUC.GetTextBeneficiaire))
                 model.beneficiaire = -1;
             else
                 model.beneficiaire = _addNewOperationUC.IdBeneficiaire;

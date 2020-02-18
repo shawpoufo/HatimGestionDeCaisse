@@ -30,7 +30,6 @@
         {
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
             this.lblSolde = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -38,11 +37,16 @@
             this.LblRapports = new System.Windows.Forms.Label();
             this.LblManger = new System.Windows.Forms.Label();
             this.MovePanel = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -63,14 +67,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(256, 100);
             this.panel3.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.Image = global::CaisseWinformUI.Properties.Resources.walletIcon;
-            this.label2.Location = new System.Drawing.Point(14, 52);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 40);
-            this.label2.TabIndex = 5;
             // 
             // lblSolde
             // 
@@ -149,6 +145,24 @@
             this.MovePanel.Size = new System.Drawing.Size(100, 5);
             this.MovePanel.TabIndex = 6;
             // 
+            // label2
+            // 
+            this.label2.Image = global::CaisseWinformUI.Properties.Resources.walletIcon;
+            this.label2.Location = new System.Drawing.Point(14, 52);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(64, 40);
+            this.label2.TabIndex = 5;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::CaisseWinformUI.Properties.Resources.logoIcon;
+            this.pictureBox1.Location = new System.Drawing.Point(46, 7);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(94, 90);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // HeaderUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -164,8 +178,10 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "HeaderUC";
             this.Size = new System.Drawing.Size(1075, 100);
+            this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -182,6 +198,7 @@
         private System.Windows.Forms.Label lblSolde;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBox1;
 
     }
 }

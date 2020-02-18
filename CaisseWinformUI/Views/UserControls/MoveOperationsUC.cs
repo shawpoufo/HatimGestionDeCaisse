@@ -15,6 +15,7 @@ namespace CaisseWinformUI.Views.UserControls
         public string Month { get { return lblMonth.Text.Trim(); } set { lblMonth.Text = value; } }
         public string Year { get { return lblYear.Text.Trim(); } set { lblYear.Text = value; } }
         public string CountOperation { get { return lblCountOperation.Text; } set { lblCountOperation.Text = value; } }
+        public event EventHandler InitializeUCValues;
         public bool ButtonsMoveYearVisibility 
         {
             set 
@@ -32,16 +33,21 @@ namespace CaisseWinformUI.Views.UserControls
         {
             InitializeComponent();
             this.Load += MoveOperationsUC_Load;
+            InitializeEvents();
+            
         }
 
-        void MoveOperationsUC_Load(object sender, EventArgs e)
+
+        async void MoveOperationsUC_Load(object sender, EventArgs e)
         {
-            this.Dock = DockStyle.Fill;
-            Month = DateTime.Now.Month.ToString();
-            Year = DateTime.Now.Year.ToString();
+            this.Dock = DockStyle.Fill;          
             btnNextYear.Visible = false;
             btnPreviousYear.Visible = false;
-            InitializeEvents();
+            if (InitializeUCValues != null)
+               await Task.Run(()=>  InitializeUCValues(null, EventArgs.Empty));
+            
+            
+            
 
         }
         private void InitializeEvents()
@@ -50,6 +56,7 @@ namespace CaisseWinformUI.Views.UserControls
             btnNextMonth.Click += btnNextMonth_Click;
             btnNextYear.Click += btnNextYear_Click;
             btnPreviousYear.Click += btnPreviousYear_Click;
+            
         }
 
         void btnPreviousYear_Click(object sender, EventArgs e)

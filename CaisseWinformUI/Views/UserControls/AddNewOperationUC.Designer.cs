@@ -62,9 +62,9 @@
             this.lblTitle.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lblTitle.Location = new System.Drawing.Point(198, 21);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(57, 25);
+            this.lblTitle.Size = new System.Drawing.Size(49, 25);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "TITLE";
+            this.lblTitle.Text = "Title";
             // 
             // txtDate
             // 
@@ -75,7 +75,7 @@
             this.txtDate.Location = new System.Drawing.Point(22, 101);
             this.txtDate.Name = "txtDate";
             this.txtDate.Size = new System.Drawing.Size(200, 26);
-            this.txtDate.TabIndex = 1;
+            this.txtDate.TabIndex = 0;
             // 
             // label1
             // 
@@ -126,7 +126,7 @@
             this.txtDecrement.Location = new System.Drawing.Point(238, 254);
             this.txtDecrement.Name = "txtDecrement";
             this.txtDecrement.Size = new System.Drawing.Size(200, 26);
-            this.txtDecrement.TabIndex = 4;
+            this.txtDecrement.TabIndex = 3;
             // 
             // panel3
             // 
@@ -157,7 +157,7 @@
             this.txtIncrement.Location = new System.Drawing.Point(22, 254);
             this.txtIncrement.Name = "txtIncrement";
             this.txtIncrement.Size = new System.Drawing.Size(200, 26);
-            this.txtIncrement.TabIndex = 7;
+            this.txtIncrement.TabIndex = 2;
             // 
             // panel4
             // 
@@ -188,7 +188,7 @@
             this.txtLibelle.Location = new System.Drawing.Point(22, 429);
             this.txtLibelle.Name = "txtLibelle";
             this.txtLibelle.Size = new System.Drawing.Size(427, 26);
-            this.txtLibelle.TabIndex = 10;
+            this.txtLibelle.TabIndex = 5;
             // 
             // cbxImputation
             // 
@@ -202,7 +202,7 @@
             this.cbxImputation.Location = new System.Drawing.Point(22, 175);
             this.cbxImputation.Name = "cbxImputation";
             this.cbxImputation.Size = new System.Drawing.Size(200, 33);
-            this.cbxImputation.TabIndex = 13;
+            this.cbxImputation.TabIndex = 1;
             // 
             // label5
             // 
@@ -238,7 +238,7 @@
             this.cbxBeneficiaire.Location = new System.Drawing.Point(22, 359);
             this.cbxBeneficiaire.Name = "cbxBeneficiaire";
             this.cbxBeneficiaire.Size = new System.Drawing.Size(200, 33);
-            this.cbxBeneficiaire.TabIndex = 15;
+            this.cbxBeneficiaire.TabIndex = 4;
             // 
             // btnAddNew
             // 

@@ -9,5 +9,6 @@ namespace CaisseWinformUI.Views.UserControls
         string Month { get; set; }
         string Year { get; set; }
         string CountOperation { get; set; }
+        event EventHandler InitializeUCValues;
     }
 }

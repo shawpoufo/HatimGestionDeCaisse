@@ -15,6 +15,8 @@ using CaisseWinformUI.Models;
 using CaisseDTOsLibrary.Models.OperationModel;
 using System.Globalization;
 using CaisseLogicLibrary.DataAccess.AccountDataAccess;
+
+
 namespace CaisseWinformUI.Presenters.UserControls
 {
     public class GridOperationsUCPresenter : CaisseWinformUI.Presenters.UserControls.IGridOperationsUCPresenter
@@ -28,6 +30,7 @@ namespace CaisseWinformUI.Presenters.UserControls
         private IOperationData _operationDataAccess;
         private IMapper _mapper;
         private IAccountData _accountData;
+
         public int IdCompte { get; set; }
         public event EventHandler EndOfSaveOperation;
         public event EventHandler ActivateFilter;
@@ -40,6 +43,7 @@ namespace CaisseWinformUI.Presenters.UserControls
             _operationDataAccess = operationDataAccess;
             _accountData = accountData;
             _mapper = mapper;
+
             SetUserControlsToPanel();
             SubscribeToEventsSetup();
 
@@ -60,6 +64,7 @@ namespace CaisseWinformUI.Presenters.UserControls
 
         void _filterOperationsUCPresenter_CloseFilterForm(object sender, EventArgs e)
         {
+
             _gridOperationsUC.GetAsidePanel.Visible = false;
         }
 
@@ -72,6 +77,7 @@ namespace CaisseWinformUI.Presenters.UserControls
                 _operationDataAccess.Delete(operation, NewAccountAmount(Convert.ToDecimal(operation.decrementer), Convert.ToDecimal(operation.incrementer)));
                 if (EndOfSaveOperation != null)
                     EndOfSaveOperation(this, EventArgs.Empty);
+
             }
         }
 
@@ -90,19 +96,25 @@ namespace CaisseWinformUI.Presenters.UserControls
         {        
             if (EndOfSaveOperation != null)
                 EndOfSaveOperation(this, EventArgs.Empty);
+
             _AddNewOperationUCPresenter.ResetOperationForm();
+
+            
         }
 
-        void _gridOperationsUC_ShowEditOperation(object sender, EventArgs e)
+         void _gridOperationsUC_ShowEditOperation(object sender, EventArgs e)
         {
+            
             _gridOperationsUC.GetAsidePanel.Visible = true;
             ((UserControl)_AddNewOperationUCPresenter.GetUC).BringToFront();
             _AddNewOperationUCPresenter.IdEditOperation = Convert.ToInt32(sender);
             _AddNewOperationUCPresenter.SetupOperationForEdit(Convert.ToInt32(sender));
+
         }
 
-        void GetUC_CancelNewOperation(object sender, EventArgs e)
+         void GetUC_CancelNewOperation(object sender, EventArgs e)
         {
+
             _AddNewOperationUCPresenter.ResetOperationForm();
             _gridOperationsUC.GetAsidePanel.Visible = false;
             

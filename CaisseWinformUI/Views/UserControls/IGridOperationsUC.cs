@@ -16,5 +16,6 @@ namespace CaisseWinformUI.Views.UserControls
         string Increment { get; set; }
         event EventHandler ShowEditOperation;
         event EventHandler ShowMessageDeleteOpeartion;
+
     }
 }

@@ -13,5 +13,6 @@ namespace CaisseWinformUI.Views.UserControls.DownLoad
         bool FileNameRequired { set; }
         bool Loading { set; }
         string FileName { set; }
+        string ErrorMessage { set; }
     }
 }

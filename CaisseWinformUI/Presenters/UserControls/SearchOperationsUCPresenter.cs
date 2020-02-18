@@ -177,6 +177,9 @@ namespace CaisseWinformUI.Presenters.UserControls
             LastSearchedMonth = month;
             LastSearchedTerm = term;
         }
-        
+        public  IEnumerable<IFullOperation> GetExceptedMonthOperation()
+        {
+            return _searchOperation.QuickSearch(LastSearchedYear - 1, LastSearchedTerm, IdAccountLoggin).Where(o => o.date.Month == 12);
+        }
     }
 }

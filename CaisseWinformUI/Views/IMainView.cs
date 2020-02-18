@@ -11,6 +11,5 @@ namespace CaisseWinformUI.Views
     {
         Panel GetHeaderPanel { get; }
         Panel GetBodyPanel { get; }
-        event EventHandler MainViewClosed;
     }
 }

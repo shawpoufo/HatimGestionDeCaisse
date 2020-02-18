@@ -169,4 +169,25 @@
   <data name="loadingGif" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\loadingGif.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="defaultPiggyBank" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\defaultPiggyBank.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="myBiggyBankIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\myBiggyBankIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="piggyBankIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\piggyBankIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="piggyBankSignUpIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\piggyBankSignUpIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8_cancel_25px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8_cancel_25px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="success" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\success.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logoIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logoIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

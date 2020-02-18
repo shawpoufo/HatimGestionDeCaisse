@@ -24,12 +24,13 @@ namespace CaisseWinformUI.Views.UserControls
         {
             InitializeComponent();
             this.Load += SignUpUC_Load;
+            InitializeEvents();
         }
 
         void SignUpUC_Load(object sender, EventArgs e)
         {
             this.Dock = DockStyle.Fill;
-            InitializeEvents();
+            
         }
 
         private void InitializeEvents()
@@ -40,13 +41,13 @@ namespace CaisseWinformUI.Views.UserControls
 
         void btnLogin_Click(object sender, EventArgs e)
         {
+            ResetUC();
             if (Login != null)
                 Login(sender, e);
         }
 
         void btnInscription_Click(object sender, EventArgs e)
-        {
-            ResetUC();
+        {  
             if (SignUp != null)
                 SignUp(sender, e);
         }

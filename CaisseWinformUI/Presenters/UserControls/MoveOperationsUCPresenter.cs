@@ -27,6 +27,13 @@ namespace CaisseWinformUI.Presenters.UserControls
         {
             _moveOperationsUC.ChangeMonthValue += _moveOperationsUC_ChangeMonthValue;
             _moveOperationsUC.ChangeYearValue += _moveOperationsUC_ChangeYearValue;
+            _moveOperationsUC.InitializeUCValues += _moveOperationsUC_InitializeUCValues;
+        }
+
+        void _moveOperationsUC_InitializeUCValues(object sender, EventArgs e)
+        {
+            _moveOperationsUC.Month = DateTime.Now.Month.ToString();
+            _moveOperationsUC.Year = DateTime.Now.Year.ToString();
         }
 
         void _moveOperationsUC_ChangeYearValue(object sender, EventArgs e)

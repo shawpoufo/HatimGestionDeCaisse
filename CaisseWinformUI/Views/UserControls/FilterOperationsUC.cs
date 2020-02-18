@@ -37,6 +37,7 @@ namespace CaisseWinformUI.Views.UserControls
         {
             InitializeComponent();
             this.Load += FilterOperationsUC_Load;
+            InitializeEvents();
         }
 
         void FilterOperationsUC_Load(object sender, EventArgs e)
@@ -55,7 +56,7 @@ namespace CaisseWinformUI.Views.UserControls
             cbxSelectedBeneficiarys.ValueMember = "id";
             cbxSelectedBeneficiarys.DisplayMember = "libelle";
             
-            InitializeEvents();
+           
         }
         private void InitializeEvents()
         {

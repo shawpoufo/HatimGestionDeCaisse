@@ -30,11 +30,12 @@ namespace CaisseWinformUI.Views.UserControls.Manage
             InitializeComponent();
             this.Load +=ManageUC_Load;
             this.Dock = DockStyle.Fill;
+            InitializeEvents();
         }
 
         void ManageUC_Load(object sender, EventArgs e)
         {
-            InitializeEvents();
+            
             CbxMembers();
         }
 

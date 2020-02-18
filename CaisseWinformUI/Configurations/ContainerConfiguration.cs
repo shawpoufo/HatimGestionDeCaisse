@@ -17,6 +17,7 @@ using CaisseWinformUI.Views.UserControls.DownLoad;
 using CaisseWinformUI.Presenters.UserControls.DownLoad;
 using CaisseWinformUI.Reporting;
 
+
 namespace CaisseWinformUI.Configurations
 {
     public static class ContainerConfiguration
@@ -56,7 +57,7 @@ namespace CaisseWinformUI.Configurations
             builder.RegisterType<MoveOperationsUC>().As<IMoveOperationsUC>();
             builder.RegisterType<ManageUC>().As<IManageUC>();
             builder.RegisterType<DownLoadUC>().As<IDownLoadUC>();
-            
+
             //Models
             builder.RegisterType<LoginAccountModel>().As<ILoginAccountModel>();
             builder.RegisterType<OperationModel>().As<IOperationModel>();

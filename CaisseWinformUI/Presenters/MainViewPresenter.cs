@@ -20,7 +20,6 @@ namespace CaisseWinformUI.Presenters
         public ILoginAccount _loginAccount { get; set; }
         private IOperationsUCPresenter _operationsUCPresenter;
         private IManageUCPresenter _manageUCPresenter;
-        public event EventHandler BackToLoginView;
 
         public MainViewPresenter(IMainView mainView, IOperationsUCPresenter operationsUCPresenter, IHeaderUCPresenter headerUCPresenter, IManageUCPresenter manageUCPresenter)
         {
@@ -37,14 +36,9 @@ namespace CaisseWinformUI.Presenters
             _operationsUCPresenter.RefreshAccount += _operationsUCPresenter_RefreshAccount;
             _headerUCPresenter.GetUC.ShowManageUC += GetUC_ShowManageUC;
             _headerUCPresenter.GetUC.ShowOperationsUC += GetUC_ShowOperationsUC;
-            _mainView.MainViewClosed += _mainView_MainViewClosed;
+
         }
 
-        void _mainView_MainViewClosed(object sender, EventArgs e)
-        {
-            if (BackToLoginView != null)
-                BackToLoginView(null, EventArgs.Empty);
-        }
 
         void GetUC_ShowOperationsUC(object sender, EventArgs e)
         {

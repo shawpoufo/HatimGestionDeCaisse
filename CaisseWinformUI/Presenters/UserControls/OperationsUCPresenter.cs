@@ -55,12 +55,40 @@ namespace CaisseWinformUI.Presenters.UserControls
             if(!string.IsNullOrEmpty(sender.ToString()))
             {
                 _searchOperationsUCPresenter.GetdownLoadUCPresenter.GetUC.Loading = true;
+                _searchOperationsUCPresenter.GetdownLoadUCPresenter.GetUC.ErrorMessage = "";
                 int year = int.Parse(_moveOperationsUCPresenter.GetUC.Year);
                 int month = int.Parse(_moveOperationsUCPresenter.GetUC.Month);
                 List<FullOperation> records = _searchOperationsUCPresenter.ListFullOperations.Where(o => o.date.Year == year && o.date.Month == month).Cast<FullOperation>().ToList();
-                 await Task.Run(()=>_searchOperationsUCPresenter.GetdownLoadUCPresenter.DownLoad(records, sender.ToString(), Environment.GetFolderPath(Environment.SpecialFolder.Desktop).ToString()));
-                _searchOperationsUCPresenter.HideDownLoadUC();
-                _searchOperationsUCPresenter.GetdownLoadUCPresenter.ResetUC();
+                List<FullOperation> previousMonthRecords;
+                if(_searchOperationsUCPresenter.FlagFilteringActivate)
+                {
+
+                    previousMonthRecords = _gridOperationsUCPresenter.GetFilterOperationsUCPresenter.GetPreviousMonthOperations(month,year).Cast<FullOperation>().ToList();
+
+                }
+                else
+                {
+                    if(month == 1)
+                    {
+                        previousMonthRecords = _searchOperationsUCPresenter.GetExceptedMonthOperation().Cast<FullOperation>().ToList();
+                    }
+                    else
+                    {
+                        previousMonthRecords = _searchOperationsUCPresenter.ListFullOperations.Where(o => o.date.Year == year && o.date.Month == month - 1).Cast<FullOperation>().ToList();
+                    }
+                }
+                var result =  await Task.Run(()=>_searchOperationsUCPresenter.GetdownLoadUCPresenter.DownLoad(records,previousMonthRecords, sender.ToString(), Environment.GetFolderPath(Environment.SpecialFolder.Desktop).ToString()));
+                if(result)
+                {
+                    _searchOperationsUCPresenter.HideDownLoadUC();
+                    _searchOperationsUCPresenter.GetdownLoadUCPresenter.ResetUC();
+                }
+                else
+                {
+                    _searchOperationsUCPresenter.GetdownLoadUCPresenter.GetUC.Loading = false;
+                    _searchOperationsUCPresenter.GetdownLoadUCPresenter.GetUC.ErrorMessage = "Veuillez férmer le fichier";
+                }
+                
             }
             else
             {

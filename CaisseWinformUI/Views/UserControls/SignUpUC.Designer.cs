@@ -31,7 +31,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblErrorMessage = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -42,25 +41,24 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label1.Location = new System.Drawing.Point(147, 54);
+            this.label1.Font = new System.Drawing.Font("Segoe UI Symbol", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
+            this.label1.Image = global::CaisseWinformUI.Properties.Resources.piggyBankSignUpIcon;
+            this.label1.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.label1.Location = new System.Drawing.Point(112, 43);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(148, 37);
+            this.label1.Size = new System.Drawing.Size(213, 132);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Inscription";
             // 
             // lblErrorMessage
             // 
             this.lblErrorMessage.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lblErrorMessage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErrorMessage.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorMessage.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(101)))), ((int)(((byte)(100)))));
             this.lblErrorMessage.Location = new System.Drawing.Point(17, 364);
             this.lblErrorMessage.Name = "lblErrorMessage";
             this.lblErrorMessage.Size = new System.Drawing.Size(405, 57);
@@ -80,17 +78,6 @@
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "Connexion";
             this.btnLogin.UseVisualStyleBackColor = false;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
-            this.panel3.Controls.Add(this.label1);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(437, 139);
-            this.panel3.TabIndex = 20;
             // 
             // panel2
             // 
@@ -130,7 +117,7 @@
             // 
             // btnInscription
             // 
-            this.btnInscription.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+            this.btnInscription.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(185)))), ((int)(((byte)(197)))));
             this.btnInscription.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnInscription.FlatAppearance.BorderSize = 0;
             this.btnInscription.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -196,12 +183,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblErrorMessage);
             this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.panel1);
@@ -213,8 +200,6 @@
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "SignUpUC";
             this.Size = new System.Drawing.Size(437, 525);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -225,7 +210,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblErrorMessage;
         private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Panel panel1;

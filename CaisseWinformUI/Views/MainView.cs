@@ -15,12 +15,13 @@ namespace CaisseWinformUI.Views
 
         public Panel GetHeaderPanel { get { return HeaderPanel; } }
         public Panel GetBodyPanel { get { return BodyPanel; } }
-        public event EventHandler MainViewClosed;
+
 
         public MainView()
         {
             InitializeComponent();
             this.Load += MainView_Load;
+            InitializeEvents();
         }
 
         void MainView_Load(object sender, EventArgs e)
@@ -30,22 +31,16 @@ namespace CaisseWinformUI.Views
             
         }
 
-        void MainView_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (MainViewClosed != null)
-                MainViewClosed(null, EventArgs.Empty);
-        }
-
         private void InitializeEvents()
         {
-
+            
         }
 
         private void InitializeViewProperties()
         {
-            this.MinimumSize = new Size(1200, 850);
+            this.MinimumSize = new Size(1300, 760);
             this.Size = new Size(1200, 850);
-            this.FormClosed += MainView_FormClosed;
+            
             this.CenterToScreen();
 
             HeaderPanel.Height = 100;

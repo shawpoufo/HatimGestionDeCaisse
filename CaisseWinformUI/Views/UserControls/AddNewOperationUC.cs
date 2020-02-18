@@ -41,12 +41,13 @@ namespace CaisseWinformUI.Views.UserControls
             this.Load += AddNewOperationUC_Load;
             oldIncrement = "";
             oldDecrement = "";
+            InitializeEvents();
         }
 
         void AddNewOperationUC_Load(object sender, EventArgs e)
         {
             this.Dock = DockStyle.Fill;
-            InitializeEvents();
+            
 
             cbxBeneficiaire.ValueMember = "id";
             cbxBeneficiaire.DisplayMember = "libelle";
@@ -66,9 +67,9 @@ namespace CaisseWinformUI.Views.UserControls
             txtDate.KeyPress += txtDate_KeyPress;
             cbxImputation.KeyPress += cbxImputation_KeyPress;
             cbxBeneficiaire.KeyPress += cbxBeneficiaire_KeyPress;
-
-            
+      
         }
+
 
         void txtDecrement_TextChanged(object sender, EventArgs e)
         {

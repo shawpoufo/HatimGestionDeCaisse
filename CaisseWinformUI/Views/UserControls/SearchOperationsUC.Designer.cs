@@ -30,8 +30,12 @@
         {
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnDownLoad = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.btnNew = new System.Windows.Forms.Button();
+            this.btnFilter = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.txtYear = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblErrorYear = new System.Windows.Forms.Label();
@@ -42,10 +46,6 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.lblFilter = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.btnDownLoad = new System.Windows.Forms.Button();
-            this.btnNew = new System.Windows.Forms.Button();
-            this.btnFilter = new System.Windows.Forms.Button();
-            this.btnRefresh = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,6 +73,24 @@
             this.panel1.Size = new System.Drawing.Size(546, 87);
             this.panel1.TabIndex = 2;
             // 
+            // btnDownLoad
+            // 
+            this.btnDownLoad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(137)))), ((int)(((byte)(255)))));
+            this.btnDownLoad.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDownLoad.FlatAppearance.BorderSize = 0;
+            this.btnDownLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDownLoad.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDownLoad.ForeColor = System.Drawing.Color.White;
+            this.btnDownLoad.Image = global::CaisseWinformUI.Properties.Resources.downloadIcon;
+            this.btnDownLoad.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDownLoad.Location = new System.Drawing.Point(154, 28);
+            this.btnDownLoad.Name = "btnDownLoad";
+            this.btnDownLoad.Size = new System.Drawing.Size(116, 38);
+            this.btnDownLoad.TabIndex = 18;
+            this.btnDownLoad.Text = "Télécharger";
+            this.btnDownLoad.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDownLoad.UseVisualStyleBackColor = false;
+            // 
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.DimGray;
@@ -91,6 +109,59 @@
             this.panel5.Size = new System.Drawing.Size(546, 5);
             this.panel5.TabIndex = 16;
             // 
+            // btnNew
+            // 
+            this.btnNew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(185)))), ((int)(((byte)(197)))));
+            this.btnNew.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNew.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNew.ForeColor = System.Drawing.Color.White;
+            this.btnNew.Image = global::CaisseWinformUI.Properties.Resources.addIcon;
+            this.btnNew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNew.Location = new System.Drawing.Point(408, 28);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(116, 38);
+            this.btnNew.TabIndex = 1;
+            this.btnNew.Text = "Nouveau";
+            this.btnNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNew.UseVisualStyleBackColor = false;
+            // 
+            // btnFilter
+            // 
+            this.btnFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(101)))), ((int)(((byte)(100)))));
+            this.btnFilter.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFilter.FlatAppearance.BorderSize = 0;
+            this.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFilter.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFilter.ForeColor = System.Drawing.Color.White;
+            this.btnFilter.Image = global::CaisseWinformUI.Properties.Resources.filterIcon;
+            this.btnFilter.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFilter.Location = new System.Drawing.Point(281, 28);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(116, 38);
+            this.btnFilter.TabIndex = 2;
+            this.btnFilter.Text = "Filtrer";
+            this.btnFilter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnFilter.UseVisualStyleBackColor = false;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
+            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRefresh.FlatAppearance.BorderSize = 0;
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnRefresh.Image = global::CaisseWinformUI.Properties.Resources.refreshIcon;
+            this.btnRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRefresh.Location = new System.Drawing.Point(17, 28);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(126, 38);
+            this.btnRefresh.TabIndex = 10;
+            this.btnRefresh.Text = "Actualiser";
+            this.btnRefresh.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            // 
             // txtYear
             // 
             this.txtYear.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -98,7 +169,7 @@
             this.txtYear.Location = new System.Drawing.Point(297, 26);
             this.txtYear.Name = "txtYear";
             this.txtYear.Size = new System.Drawing.Size(163, 26);
-            this.txtYear.TabIndex = 3;
+            this.txtYear.TabIndex = 1;
             // 
             // label1
             // 
@@ -196,77 +267,6 @@
             this.btnSearch.TabIndex = 7;
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.UseVisualStyleBackColor = false;
-            // 
-            // btnDownLoad
-            // 
-            this.btnDownLoad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(137)))), ((int)(((byte)(255)))));
-            this.btnDownLoad.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDownLoad.FlatAppearance.BorderSize = 0;
-            this.btnDownLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDownLoad.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDownLoad.ForeColor = System.Drawing.Color.White;
-            this.btnDownLoad.Image = global::CaisseWinformUI.Properties.Resources.downloadIcon;
-            this.btnDownLoad.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDownLoad.Location = new System.Drawing.Point(154, 28);
-            this.btnDownLoad.Name = "btnDownLoad";
-            this.btnDownLoad.Size = new System.Drawing.Size(116, 38);
-            this.btnDownLoad.TabIndex = 18;
-            this.btnDownLoad.Text = "Télécharger";
-            this.btnDownLoad.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDownLoad.UseVisualStyleBackColor = false;
-            // 
-            // btnNew
-            // 
-            this.btnNew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(185)))), ((int)(((byte)(197)))));
-            this.btnNew.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNew.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNew.ForeColor = System.Drawing.Color.White;
-            this.btnNew.Image = global::CaisseWinformUI.Properties.Resources.addIcon;
-            this.btnNew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNew.Location = new System.Drawing.Point(408, 28);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(116, 38);
-            this.btnNew.TabIndex = 1;
-            this.btnNew.Text = "Nouveau";
-            this.btnNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnNew.UseVisualStyleBackColor = false;
-            // 
-            // btnFilter
-            // 
-            this.btnFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(101)))), ((int)(((byte)(100)))));
-            this.btnFilter.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFilter.FlatAppearance.BorderSize = 0;
-            this.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFilter.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFilter.ForeColor = System.Drawing.Color.White;
-            this.btnFilter.Image = global::CaisseWinformUI.Properties.Resources.filterIcon;
-            this.btnFilter.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFilter.Location = new System.Drawing.Point(281, 28);
-            this.btnFilter.Name = "btnFilter";
-            this.btnFilter.Size = new System.Drawing.Size(116, 38);
-            this.btnFilter.TabIndex = 2;
-            this.btnFilter.Text = "Filtrer";
-            this.btnFilter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnFilter.UseVisualStyleBackColor = false;
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
-            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRefresh.FlatAppearance.BorderSize = 0;
-            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnRefresh.Image = global::CaisseWinformUI.Properties.Resources.refreshIcon;
-            this.btnRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRefresh.Location = new System.Drawing.Point(17, 28);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(126, 38);
-            this.btnRefresh.TabIndex = 10;
-            this.btnRefresh.Text = "Actualiser";
-            this.btnRefresh.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRefresh.UseVisualStyleBackColor = false;
             // 
             // SearchOperationsUC
             // 

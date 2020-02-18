@@ -15,6 +15,7 @@ namespace CaisseWinformUI.Views.UserControls.DownLoad
     {
         public event EventHandler DownLoad;
         public bool FileNameRequired { set { lblFileNameRequired.Visible = value; } }
+        public string ErrorMessage { set { lblError.Text = value; } }
         public bool Loading { set { pbLoading.Visible = value; } }
         public string FileName { set { txtFileName.Text = value; } }
         public DownLoadUC()

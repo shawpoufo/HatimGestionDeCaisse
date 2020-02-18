@@ -48,7 +48,7 @@ namespace CaisseLogicLibrary.DataAccess.SearchOperations
                     "LEFT JOIN Compte c ON c.id = o.compte "+
                     "where o.compte = @id ";
                     
-            var ListFullOperation = _sqliteDataAccess.LoadData<FullOperation, dynamic>(query, new { });
+            var ListFullOperation = _sqliteDataAccess.LoadData<FullOperation, dynamic>(query, new {id=id });
 
             return ListFullOperation;
         }
@@ -78,5 +78,6 @@ namespace CaisseLogicLibrary.DataAccess.SearchOperations
 
             return ListFullOperation;
         }
+        
     }
 }

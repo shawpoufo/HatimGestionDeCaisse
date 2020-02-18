@@ -54,6 +54,7 @@ namespace CaisseWinformUI.Views.UserControls
         {
             InitializeComponent();
             this.Load += SearchOperationsUC_Load;
+            InitializeEvents();
             oldYear = "";
             
         }
@@ -83,7 +84,7 @@ namespace CaisseWinformUI.Views.UserControls
         void SearchOperationsUC_Load(object sender, EventArgs e)
         {
             
-            InitializeEvents();
+            
             this.Dock = DockStyle.Fill;
             lblFilter.Visible = false;
             
@@ -99,6 +100,28 @@ namespace CaisseWinformUI.Views.UserControls
             txtYear.KeyPress += txtYear_KeyPress;
             txtYear.TextChanged += txtYear_TextChanged;
             btnDownLoad.Click += btnDownLoad_Click;
+            txtYear.KeyDown += txtYear_KeyDown;
+            txtSearch.KeyDown += txtSearch_KeyDown;
+        }
+
+        void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (QuickSearch != null)
+                    QuickSearch(this, EventArgs.Empty);
+            }
+        }
+
+        void txtYear_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (QuickSearch != null)
+                    QuickSearch(this, EventArgs.Empty);
+            }
         }
 
         void btnDownLoad_Click(object sender, EventArgs e)

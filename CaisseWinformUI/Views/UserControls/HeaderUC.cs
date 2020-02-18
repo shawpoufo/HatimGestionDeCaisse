@@ -20,14 +20,14 @@ namespace CaisseWinformUI.Views.UserControls
         {
             InitializeComponent();
             this.Load += HeaderUC_Load;
-            
+            InitializeEvents();
             this.Dock = DockStyle.Fill;
             this.Height = 130;
         }
 
         void HeaderUC_Load(object sender, EventArgs e)
         {
-            InitializeEvents();
+            
             if (InitializeValues != null)
                 InitializeValues(this, EventArgs.Empty);
         }

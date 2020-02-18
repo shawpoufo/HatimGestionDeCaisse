@@ -30,7 +30,7 @@ namespace CaisseWinformUI.Presenters.UserControls
             _signUpUser = signUpUser;
             _loginAccount = loginAccount;
             _mapper = mapper;
-            validator = new SignUpValidator();
+            validator = new SignUpValidator((SignUpUser)_signUpUser);
             InitializeSignUpUCEvents();
         }
         private void InitializeSignUpUCEvents()

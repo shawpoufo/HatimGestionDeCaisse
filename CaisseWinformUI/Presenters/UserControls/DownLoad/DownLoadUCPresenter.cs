@@ -22,10 +22,10 @@ namespace CaisseWinformUI.Presenters.UserControls.DownLoad
             _exportToExcel = exportToExcel;
         }
 
-        public void DownLoad(IEnumerable<IFullOperation> records,string fileName,string path)
+        public bool DownLoad(IEnumerable<IFullOperation> records, IEnumerable<IFullOperation> previousMonthRecords, string fileName, string path)
         {
             
-                _exportToExcel.Export(records, fileName, path);
+            return  _exportToExcel.Export(records,previousMonthRecords, fileName, path);
 
         }
         public void ResetUC()

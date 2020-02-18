@@ -23,6 +23,7 @@ namespace CaisseWinformUI.Views.UserControls
         {
             InitializeComponent();
             this.Load += LoginUC_Load;
+            InitializeEvents();
             
             
         }
@@ -30,7 +31,7 @@ namespace CaisseWinformUI.Views.UserControls
         void LoginUC_Load(object sender, EventArgs e)
         {
             this.Dock = DockStyle.Fill;
-            InitializeEvents();
+            
         }
 
         
@@ -52,6 +53,7 @@ namespace CaisseWinformUI.Views.UserControls
             
             if (Login != null)
                 Login(this, e);
+            
         }
         public void ResetUC()
         {

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using CaisseDTOsLibrary.Models.FullOperationModel;
+using System;
+using System.Collections.Generic;
 namespace CaisseWinformUI.Reporting
 {
     public interface IExportToExcel
     {
-        void Export(System.Collections.Generic.IEnumerable<CaisseDTOsLibrary.Models.FullOperationModel.IFullOperation> records, string fileName, string path);
+        bool Export(IEnumerable<IFullOperation> records, IEnumerable<IFullOperation> previousMonthRecords, string fileName, string path);
     }
 }

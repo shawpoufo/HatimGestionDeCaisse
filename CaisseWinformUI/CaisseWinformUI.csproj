@@ -34,6 +34,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>defaultPiggyBank.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Win32Resource>
+    </Win32Resource>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Autofac, Version=4.9.4.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
@@ -97,7 +104,6 @@
     <Compile Include="Presenters\MainViewPresenter.cs" />
     <Compile Include="Presenters\UserControls\GridOperationsUCPresenter.cs" />
     <Compile Include="Presenters\UserControls\HeaderUCPresenter.cs" />
-    <Compile Include="Presenters\UserControls\IDownLoadUCPresenter.cs" />
     <Compile Include="Presenters\UserControls\IFilterOperationsUCPresenter.cs" />
     <Compile Include="Presenters\UserControls\IGridOperationsUCPresenter.cs" />
     <Compile Include="Presenters\UserControls\IHeaderUCPresenter.cs" />
@@ -120,6 +126,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reporting\ExportToExcel.cs" />
     <Compile Include="Reporting\IExportToExcel.cs" />
+    <Compile Include="Validators\FilterOperationValidator.cs" />
     <Compile Include="Validators\LoginAccountValidator.cs" />
     <Compile Include="Validators\OperationValidator.cs" />
     <Compile Include="Validators\SignUpValidator.cs" />
@@ -215,6 +222,16 @@
     <Compile Include="Views\UserControls\SignUpUC.Designer.cs">
       <DependentUpon>SignUpUC.cs</DependentUpon>
     </Compile>
+    <Content Include="defaultPiggyBank.ico" />
+    <Content Include="piggyBank.ico" />
+    <None Include="Resources\logoIcon.png" />
+    <None Include="Resources\icons8_cancel_25px.png" />
+    <None Include="Resources\success.png" />
+    <None Include="Resources\defaultPiggyBank.ico" />
+    <None Include="Resources\piggyBank.ico" />
+    <None Include="Resources\myBiggyBankIcon.png" />
+    <None Include="Resources\piggyBankSignUpIcon.png" />
+    <None Include="Resources\piggyBankIcon.png" />
     <None Include="Resources\loadingGif.gif" />
     <None Include="Resources\downloadIconBlue.png" />
     <None Include="Resources\downloadIcon.png" />

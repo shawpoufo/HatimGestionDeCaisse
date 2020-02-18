@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
+
 namespace CaisseLogicLibrary.DataAccess.FilterOperationDataAccess
 {
     public class FilterOperationData : CaisseLogicLibrary.DataAccess.FilterOperationDataAccess.IFilterOperationData

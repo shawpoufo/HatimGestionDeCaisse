@@ -11,7 +11,7 @@ namespace CaisseWinformUI.Presenters.UserControls.DownLoad
     public interface IDownLoadUCPresenter
     {
         IDownLoadUC GetUC { get; }
-        void DownLoad(IEnumerable<IFullOperation> records, string fileName, string path);
+        bool DownLoad(IEnumerable<IFullOperation> records, IEnumerable<IFullOperation> previousMonthRecords, string fileName, string path);
         void ResetUC();
     }
 }

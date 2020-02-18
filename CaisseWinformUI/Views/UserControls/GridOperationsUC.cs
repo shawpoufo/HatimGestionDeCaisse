@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
+
 namespace CaisseWinformUI.Views.UserControls
 {
     public partial class GridOperationsUC : UserControl,IGridOperationsUC
@@ -20,20 +21,21 @@ namespace CaisseWinformUI.Views.UserControls
         public string Increment { get { return lblIncrement.Text; } set { lblIncrement.Text = value; } }
         public event EventHandler ShowEditOperation;
         public event EventHandler ShowMessageDeleteOpeartion;
+
         public GridOperationsUC()
         {
             InitializeComponent();
             this.Load += GridOperationsUC_Load;
+            InitializeEvents(); 
         }
 
         void GridOperationsUC_Load(object sender, EventArgs e)
         {
             this.Dock = DockStyle.Fill;         
-            this.asidePanel.Visible = false;
-            this.asidePanel.Width = 474;
-            InitializeEvents();   
-            
-            
+            asidePanel.Visible = false;
+            asidePanel.Width = 500;
+
+  
         }
 
         public void SetParent(Panel parentPanel)
@@ -45,7 +47,9 @@ namespace CaisseWinformUI.Views.UserControls
             dgvOperations.CellContentClick += dgvOperations_CellContentClick;
             dgvOperations.CellMouseLeave += dgvOperations_CellMouseLeave;
             dgvOperations.CellMouseEnter += dgvOperations_CellMouseEnter;
+            
         }
+
 
         void dgvOperations_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
