@@ -37,6 +37,7 @@ namespace CaisseWinformUI
                     // completes!
                     SquirrelAwareApp.HandleEvents(
                       onInitialInstall: v => mgr.CreateShortcutForThisExe(),
+                      
                       onAppUpdate: v =>
                       {
                           mgr.CreateShortcutForThisExe();
@@ -44,7 +45,7 @@ namespace CaisseWinformUI
                       },
                       onAppUninstall: v =>
                       {
-                          Directory.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "GDOPiggyBankData"), true);
+                          Directory.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "CaisseUIData"), true);
                           mgr.RemoveShortcutForThisExe();
                       },
                       onFirstRun: () => createDB.Create()
