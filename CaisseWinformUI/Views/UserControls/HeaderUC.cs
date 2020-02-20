@@ -35,14 +35,8 @@ namespace CaisseWinformUI.Views.UserControls
         {
             LblOperations.Click += LblOperations_Click;
             LblManger.Click += LblManger_Click;
-            LblRapports.Click += LblRapports_Click;
         }
 
-        void LblRapports_Click(object sender, EventArgs e)
-        {
-            MoveThePanel(LblRapports);
-            ChangeLabelColor(LblRapports);
-        }
 
         void LblManger_Click(object sender, EventArgs e)
         {
@@ -75,7 +69,7 @@ namespace CaisseWinformUI.Views.UserControls
 
             listLabel.Add(LblManger);
             listLabel.Add(LblOperations);
-            listLabel.Add(LblRapports);
+            
 
             listLabel.Where(l => l.Name != label.Name).ToList().ForEach(l => l.ForeColor = Color.Silver);
             listLabel.Where(l => l.Name == label.Name).ToList().FirstOrDefault().ForeColor = Color.White;

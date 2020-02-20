@@ -16,6 +16,8 @@ using CaisseWinformUI.Presenters.UserControls.Manage;
 using CaisseWinformUI.Views.UserControls.DownLoad;
 using CaisseWinformUI.Presenters.UserControls.DownLoad;
 using CaisseWinformUI.Reporting;
+using CaisseWinformUI.Views.UserControls.UpdateScreen;
+using CaisseWinformUI.Presenters.UserControls.Update;
 
 
 namespace CaisseWinformUI.Configurations
@@ -57,7 +59,7 @@ namespace CaisseWinformUI.Configurations
             builder.RegisterType<MoveOperationsUC>().As<IMoveOperationsUC>();
             builder.RegisterType<ManageUC>().As<IManageUC>();
             builder.RegisterType<DownLoadUC>().As<IDownLoadUC>();
-
+            builder.RegisterType<UpdateUC>().As<IUpdateUC>();
             //Models
             builder.RegisterType<LoginAccountModel>().As<ILoginAccountModel>();
             builder.RegisterType<OperationModel>().As<IOperationModel>();
@@ -76,6 +78,7 @@ namespace CaisseWinformUI.Configurations
             builder.RegisterType<MoveOperationsUCPresenter>().As<IMoveOperationsUCPresenter>();
             builder.RegisterType<ManageUCPresenter>().As<IManageUCPresenter>();
             builder.RegisterType<DownLoadUCPresenter>().As<IDownLoadUCPresenter>();
+            builder.RegisterType<UpdateUCPresenter>().As<IUpdateUCPresenter>();
             //Services
             builder.RegisterType<ExportToExcel>().As<IExportToExcel>();
 

@@ -14,7 +14,8 @@ namespace CaisseWinformUI.Configurations
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.AddMaps(Assembly.Load("CaisseWinformUI"));
+                // assembly a changer CaisseWinformUI => CaisseUI
+                cfg.AddMaps(Assembly.Load("CaisseUI"));
 
             });
 

@@ -10,30 +10,55 @@ using CaisseDTOsLibrary.Models.BeneficiaireModel;
 using CaisseLogicLibrary.DataAccess.SignUp;
 using CaisseLogicLibrary.DataAccess.SearchOperations;
 using CaisseWinformUI.Presenters;
+using CaisseLogicLibrary.DataAccess.GenerateDatabase;
+using Squirrel;
+using System.IO;
 namespace CaisseWinformUI
 {
-     static class Program
-     {
-          /// <summary>
-          /// The main entry point for the application.
-          /// </summary>
-          [STAThread]
-          static void Main()
-          {
-               Application.EnableVisualStyles();
-               Application.SetCompatibleTextRenderingDefault(false);
+    static class Program
+    {
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
 
-               var container = ContainerConfiguration.configure();
+            var container = ContainerConfiguration.configure();
 
-              using(container.BeginLifetimeScope())
-              {
-                  var loginViewPresenter =  container.Resolve<ILoginViewPresenter>();
-                  var loginView = loginViewPresenter.GetLoginView();
+            using (container.BeginLifetimeScope())
+            {
+                var createDB = container.Resolve<ICreateDatabase>();
+                using (var mgr = new UpdateManager(Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Releases"))))
+                {
+                    // Note, in most of these scenarios, the app exits after this method
+                    // completes!
+                    SquirrelAwareApp.HandleEvents(
+                      onInitialInstall: v => mgr.CreateShortcutForThisExe(),
+                      onAppUpdate: v =>
+                      {
+                          mgr.CreateShortcutForThisExe();
+                          createDB.Create();
+                      },
+                      onAppUninstall: v =>
+                      {
+                          Directory.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "GDOPiggyBankData"), true);
+                          mgr.RemoveShortcutForThisExe();
+                      },
+                      onFirstRun: () => createDB.Create()
 
-                  Application.Run(loginView);
-              }
+                      );
+                }
 
-               
-          }
-     }
+                var loginViewPresenter = container.Resolve<ILoginViewPresenter>();
+                var loginView = loginViewPresenter.GetLoginView();
+
+                Application.Run(loginView);
+            }
+
+
+        }
+    }
 }

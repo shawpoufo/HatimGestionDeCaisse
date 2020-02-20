@@ -50,6 +50,8 @@
     <Compile Include="DataAccess\BeneficiaireDataAccess\IBeneficiaireData.cs" />
     <Compile Include="DataAccess\FilterOperationDataAccess\FilterOperationData.cs" />
     <Compile Include="DataAccess\FilterOperationDataAccess\IFilterOperationData.cs" />
+    <Compile Include="DataAccess\GenerateDatabase\CreateDatabase.cs" />
+    <Compile Include="DataAccess\GenerateDatabase\ICreateDatabase.cs" />
     <Compile Include="DataAccess\ImputationDataAccess\IImputationData.cs" />
     <Compile Include="DataAccess\ImputationDataAccess\ImputationData.cs" />
     <Compile Include="DataAccess\Login\ILogger.cs" />

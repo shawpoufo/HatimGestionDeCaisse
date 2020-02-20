@@ -10,6 +10,7 @@ using AutoMapper;
 using CaisseWinformUI.Models;
 using CaisseWinformUI.Validators;
 using FluentValidation.Results;
+using System.Reflection;
 namespace CaisseWinformUI.Presenters.UserControls
 {
     public class LoginUCPresenter : CaisseWinformUI.Presenters.UserControls.ILoginUCPresenter
@@ -31,6 +32,7 @@ namespace CaisseWinformUI.Presenters.UserControls
             _mapper = mapper;
             validator = new LoginAccountValidator();
             InitializeLoginUCEvents();
+            _loginUC.Version = "Version : "+Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
 
         private void InitializeLoginUCEvents()

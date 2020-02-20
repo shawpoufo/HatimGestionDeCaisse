@@ -29,19 +29,18 @@
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.lblSolde = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.LblOperations = new System.Windows.Forms.Label();
-            this.LblRapports = new System.Windows.Forms.Label();
             this.LblManger = new System.Windows.Forms.Label();
             this.MovePanel = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -53,6 +52,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(192, 100);
             this.panel2.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::CaisseWinformUI.Properties.Resources.logoIcon;
+            this.pictureBox1.Location = new System.Drawing.Point(46, 7);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(94, 90);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // panel3
             // 
@@ -67,6 +76,14 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(256, 100);
             this.panel3.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.Image = global::CaisseWinformUI.Properties.Resources.walletIcon;
+            this.label2.Location = new System.Drawing.Point(14, 52);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(64, 40);
+            this.label2.TabIndex = 5;
             // 
             // lblSolde
             // 
@@ -111,25 +128,12 @@
             this.LblOperations.Text = "Operations";
             this.LblOperations.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // LblRapports
-            // 
-            this.LblRapports.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LblRapports.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblRapports.ForeColor = System.Drawing.Color.Silver;
-            this.LblRapports.Location = new System.Drawing.Point(349, 61);
-            this.LblRapports.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblRapports.Name = "LblRapports";
-            this.LblRapports.Size = new System.Drawing.Size(100, 31);
-            this.LblRapports.TabIndex = 4;
-            this.LblRapports.Text = "Rapports";
-            this.LblRapports.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // LblManger
             // 
             this.LblManger.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LblManger.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblManger.ForeColor = System.Drawing.Color.Silver;
-            this.LblManger.Location = new System.Drawing.Point(468, 61);
+            this.LblManger.Location = new System.Drawing.Point(349, 60);
             this.LblManger.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblManger.Name = "LblManger";
             this.LblManger.Size = new System.Drawing.Size(100, 31);
@@ -145,24 +149,6 @@
             this.MovePanel.Size = new System.Drawing.Size(100, 5);
             this.MovePanel.TabIndex = 6;
             // 
-            // label2
-            // 
-            this.label2.Image = global::CaisseWinformUI.Properties.Resources.walletIcon;
-            this.label2.Location = new System.Drawing.Point(14, 52);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 40);
-            this.label2.TabIndex = 5;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::CaisseWinformUI.Properties.Resources.logoIcon;
-            this.pictureBox1.Location = new System.Drawing.Point(46, 7);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(94, 90);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // HeaderUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -170,7 +156,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
             this.Controls.Add(this.MovePanel);
             this.Controls.Add(this.LblManger);
-            this.Controls.Add(this.LblRapports);
             this.Controls.Add(this.LblOperations);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -179,9 +164,9 @@
             this.Name = "HeaderUC";
             this.Size = new System.Drawing.Size(1075, 100);
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -191,7 +176,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label LblOperations;
-        private System.Windows.Forms.Label LblRapports;
         private System.Windows.Forms.Label LblManger;
         private System.Windows.Forms.Panel MovePanel;
         private System.Windows.Forms.Panel panel5;

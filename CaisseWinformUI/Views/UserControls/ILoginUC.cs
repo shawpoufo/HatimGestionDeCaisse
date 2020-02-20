@@ -9,5 +9,6 @@ namespace CaisseWinformUI.Views.UserControls
         event EventHandler Login;
         event EventHandler SignUp;
         void ResetUC();
+        string Version { set; }
     }
 }

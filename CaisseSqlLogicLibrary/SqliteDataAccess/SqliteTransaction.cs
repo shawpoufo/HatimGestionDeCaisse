@@ -7,22 +7,28 @@ using Dapper;
 using System.Data;
 using System.Data.SQLite;
 using System.Configuration;
+using System.IO;
 
 namespace CaisseSqlLogicLibrary.SqliteDataAccess
 {
     public class SqliteTransaction : CaisseSqlLogicLibrary.SqliteDataAccess.ISqliteTransaction, IDisposable
     {
-        public string GetConnectionString(string name)
+        public string GetConnectionString()
         {
-            return ConfigurationManager.ConnectionStrings[name].ConnectionString;
+            string rootPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            string folderName = "CaisseUIData";
+            string dbName = "caisse.db";
+            string dataSource = Path.Combine(rootPath, folderName, dbName);
+
+            return string.Format(@"Data Source = {0} ; Version = 3 ; providerName = System.Data.SqlClient", dataSource);
         }
         private IDbConnection _connection;
         private IDbTransaction _transacion;
         private bool isClosed = false;
 
-        public void StartTransaction(string connectionStringName = "caisseCnn")
+        public void StartTransaction()
         {
-            string connectionString = GetConnectionString(connectionStringName);
+            string connectionString = GetConnectionString();
 
             _connection = new SQLiteConnection(connectionString);
             _connection.Open();

@@ -7,20 +7,33 @@ using System.Data.SQLite;
 using System.Configuration;
 using System.Data;
 using Dapper;
+using System.IO;
 
 namespace CaisseSqlLogicLibrary.SqliteDataAccess
 {
     public class SqliteDataAccess : ISqliteDataAccess
     {
-        public string GetConnectionString(string name)
+        public string RootPath { get; private set; }
+        public string FolderName { get; private set; }
+        public string DBName { get; private set; }
+
+        public SqliteDataAccess()
         {
-            return ConfigurationManager.ConnectionStrings[name].ConnectionString;
-            //return @"Data Source=C:\Users\AND\Desktop\Projet Caisse WinForm\HatimGestionDeCaisse\CaisseWinformUI\bin\Debug\caisse.db;Version=3; providerName=System.Data.SqlClient";
+            RootPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            FolderName = "CaisseUIData";
+            DBName = "caisse.db";
+        }
+        public string GetConnectionString()
+        {
+             
+             string dataSource = Path.Combine(RootPath, FolderName, DBName);
+
+            return string.Format(@"Data Source = {0} ; Version = 3 ; providerName = System.Data.SqlClient",dataSource);
         }
         //Get
         public List<T> LoadData<T, U>(string sqlQuery, U parameters, string connectionStringName = "caisseCnn")
         {
-            string connectionString = GetConnectionString(connectionStringName);
+            string connectionString = GetConnectionString();
 
             using (IDbConnection connection = new SQLiteConnection(connectionString))
             {
@@ -31,7 +44,7 @@ namespace CaisseSqlLogicLibrary.SqliteDataAccess
         //Update , Delete , Insert
         public void SaveData<T>(string sqlQuery, T parameters, string connectionStringName = "caisseCnn")
         {
-            string connectionString = GetConnectionString(connectionStringName);
+            string connectionString = GetConnectionString();
 
             using (IDbConnection connection = new SQLiteConnection(connectionString))
             {
@@ -42,7 +55,7 @@ namespace CaisseSqlLogicLibrary.SqliteDataAccess
 
         public bool SignUpTransaction<T>(T parameters, string connectionStringName = "caisseCnn")
         {
-            string connectionString = GetConnectionString(connectionStringName);
+            string connectionString = GetConnectionString();
             string query = "";
             bool isCreated = true;
 

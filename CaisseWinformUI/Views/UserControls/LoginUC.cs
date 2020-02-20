@@ -17,7 +17,7 @@ namespace CaisseWinformUI.Views.UserControls
         public string GetUsername { get { return txtUsername.Text; } }
         public string GetPassword { get { return txtPassword.Text; } }
         public string SetErrorMessage { set { lblErrorMessage.Text = value; } }
-        
+        public string Version { set { lblVersion.Text = value; } }
 
         public LoginUC()
         {
@@ -40,7 +40,31 @@ namespace CaisseWinformUI.Views.UserControls
         {
             btnLogin.Click += btnLogin_Click;
             btnInscription.Click += btnInscription_Click;
+            txtUsername.KeyDown += txtUsername_KeyDown;
+            txtPassword.KeyDown += txtPassword_KeyDown;
         }
+
+        void txtUsername_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (Login != null)
+                    Login(this, e);
+            }
+        }
+
+        void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (Login != null)
+                    Login(this, e);
+            }
+        }
+
+
 
         void btnInscription_Click(object sender, EventArgs e)
         {
